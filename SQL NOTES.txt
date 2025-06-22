@@ -1,0 +1,282 @@
+
+####################################################################################################################################################################
+										 SQL ANSWER
+####################################################################################################################################################################
+(1) what database types refers & tell Database Types ?
+types of databases tells how data is stored, managed, and queried.
+
+**Database Types**:
+SQL databases (Relational)
+NoSQL databases (Non-relational)
+
+(2) Difference Between SQL and No-SQL?
+
+| Feature / Criteria    | **SQL (Relational Database)**                                    | **NoSQL (Non-relational Database)**                              |
+| --------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Nature                | Structured, relational                                           | Unstructured, non-relational                                     |
+| Schema                | Fixed schema                                                     | Dynamic schema                                                   |
+| Data Format           | Table-based (rows & columns)                                     | Document, key-value, column, or graph-based                      |
+| Query Language        | SQL                                                              | Various (e.g., JSON queries, CQL, etc.)                          |
+| Use Case              | Complex queries, transactional systems                           | Big Data, real-time apps, flexible schema needs                  |
+| ACID / CAP Compliance | Follows **ACID** (Atomicity, Consistency, Isolation, Durability) | Follows **CAP** (Consistency, Availability, Partition Tolerance) |
+| Best For              | Structured data, joins, consistency                              | Scalability, flexibility, hierarchical/semi-structured data      |
+| Examples              | MySQL, PostgreSQL, Oracle, SQL Server                            | MongoDB, Cassandra, HBase, Neo4j                                 |
+
+
+(3) What Database Management Systems (DBMS) refers & tell DBMS types?
+DBMS refers to software systems that manage databases. it tells how they operate and their characteristics.
+
+** DBMS Types **:
+DBMS (general, can be file-based or non-relational)
+RDBMS (specialized type of DBMS with SQL support)
+
+(4) Difference between DBMS and RDBMS ?
+
+| Feature / Criteria   | **DBMS**                         | **RDBMS**                                         |
+| -------------------- | -------------------------------- | ------------------------------------------------- |
+| Data Storage         | File-based                       | Table-based (rows and columns)                    |
+| Schema               | May not support relational model | Uses relational schema                            |
+| Normalization        | Not supported                    | Fully supports normalization                      |
+| Data Volume Handling | Small datasets                   | Large datasets                                    |
+| User Support         | Single-user                      | Multi-user                                        |
+| Data Relationship    | Hierarchical / flat              | Supports relations through primary & foreign keys |
+| Examples             | Microsoft Access, IMS, IDS       | MySQL, Oracle, PostgreSQL, SQL Server             |
+
+(5) What is View ?
+A View is a virtual Table based on the result-set of an SQL statement .
+it doesn't store data any where rather , a view always shows up-to-date data. and the database engine recreate the view every time a user queries it.
+
+(6) What are Sub Queries ?
+a sub query or inner query or a nested query is a query within another SQL Query. it involves 2 select statements.
+
+(7) what is Union ?
+it is used to combine the result-set of two or more SELECT statements.
+it gives Unique Records.
+to use it: -> every SELECT should have same no.of columns.
+           -> columns must have similar data types.
+           -> columns in every SELECT should be in same order. 
+
+(8) What are Joins & EXPLAIN Each-one JOINS ?
+Joins is used to combine rows from two or more tables , based on a related column between them.
+
+** Types of Joins ** :
+(a) Inner Join
+(b) Left Join
+(c) Right Join
+(d) Full join / Outer Join
+
+
+-> (a) Inner Join:
+return records that have matching values in both tables.
+
+-> (b) Left Join :
+return all records from the left table, and the matched records from the right table.
+
+-> (c) Right Join:
+return all records from the right table, and the matched records from the left table. 
+
+-> (d) Full join / Outer Join :
+return all records when there is a match in Either left or right table 
+left join UNION right join 
+
+
+(9) Explain  general order of SQL clauses in a SELECT query?
+
+SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY -> (LIMIT: OPTIONAL).
+
+(10) What are Aggregate Functions?
+Aggregate Functions perform a calculation on a set of values. and return a single value .
+Aggregate Functions are:
+-> count()
+-> Max()
+-> Min()
+-> Sum()
+-> Avg()
+
+(11) What are SQL operators? Describe their types ?
+-> Arithmetic Operators : + , -  , * , /  ,  %
+-> Comparison Operators : = , != , > , >= , < , <=
+-> Logical Operators    : AND , OR, NOT, IN , BETWEEN , ALL, LIKE, ANY .
+-> Bitwise Operators :    &  ,  | 
+
+(12) EXPLAIN AND , OR, BETWEEN, IN, NOT Operators ?
+AND :=
+to check for both conditions to be true.
+
+OR :=
+to check for one of the conditions to be true.
+
+BETWEEN :=
+selects for a given range.
+
+IN :=
+matches any value in the list.
+
+NOT:=
+to negate the given condition.
+
+
+(13) What is a clause in SQL and why is it used , Tell names of Cluse?
+A clause in SQL is a part of a SQL statement that defines specific conditions or behavior to retrieve, filter, group, or sort data from a database.
+
+(14) Explain Where Cluse?
+to define some condition.
+
+(15) Explain having cluse?
+similar to where cluse. it applies some condition on rows.
+it is used when we want to apply any condition after grouping.
+eg. count no.of students in each city where max marks across 90.
+
+(16) Explain Group By Cluse?
+group rows that have the same value into summary rows.
+it collects data from multiple records and group the result by one or more column.
+generally we use group by with some aggregation function.
+eg. count number of student in each city.
+
+(17) Explain Order By Cluse?
+to sort in ascending or descending order. 
+
+(18) Explain Limit Cluse ?
+Sets an Upper Limit on a number of rows to be returned.
+
+(19) What is a constraint in SQL, Explain Types of Constraints in SQL?
+A constraint in SQL is a rule applied to a column or a table to ensure data integrity, accuracy, and consistency.
+
+| Constraint    | Description                                                            |
+| ------------- | ---------------------------------------------------------------------- |
+| `NOT NULL`    | Ensures the column cannot have a NULL value                            |
+| `UNIQUE`      | Ensures all values in the column are unique                            |
+| `PRIMARY KEY` | Uniquely identifies each row (combines NOT NULL + UNIQUE)              |
+| `FOREIGN KEY` | Ensures values in a column match values in another table’s primary key |
+| `CHECK`       | Ensures values meet a specific condition (e.g., age > 18)              |
+| `DEFAULT`     | Sets a default value if no value is provided during insertion          |
+
+(20) Explain Difference between PRIMARY KEY and FOREIGN KEY ?
+
+Primary key :=
+-> it is a column in a table that uniquely identifies each row.
+-> there is only 1 PK & it should not null.
+
+FOREIGN KEY :=
+-> a foreign key is a column in a table that refers to the primary key in another table. 
+-> there can be multiple FKs
+-> FKs can have duplicates & null values.
+
+
+(21) What are SQL commands and what are their types ?
+SQL commands are instructions given to the database to perform specific tasks such as creating tables, inserting data, updating records, and more.
+
+Types of SQL Commands:
+
+| Type    | Full Form                    | Purpose / Examples                                                 |
+| ------- | ---------------------------- | ------------------------------------------------------------------ |
+| **DDL** | Data Definition Language     | Defines or modifies structure of database objects (tables, schema) |
+|         |                              | Commands: `CREATE`, `ALTER`, `DROP`, `TRUNCATE`                    |
+| **DML** | Data Manipulation Language   | Deals with **data inside tables**                                  |
+|         |                              | Commands: `INSERT`, `UPDATE`, `DELETE`                             |
+| **DQL** | Data Query Language          | Retrieves data from the database                                   |
+|         |                              | Command: `SELECT`                                                  |
+| **DCL** | Data Control Language        | Controls **access and permissions**                                |
+|         |                              | Commands: `GRANT`, `REVOKE`                                        |
+| **TCL** | Transaction Control Language | Manages **transactions**                                           |
+|         |                              | Commands: `COMMIT`, `ROLLBACK`, `SAVEPOINT`                        |
+
+
+(22) What are the different data types supported in SQL?
+
+refer sharda notes.
+
+(23) WHAT IS NORMALIZATION?
+-> Normalization is a database design technique that organize tables in manner that reduce redundancy and dependency of data.
+-> To avoid insertion ,updation and deletion anomaly.
+-> Normalization devides larger tables into smaller tables and link them using relationships( primary key & foreign key).
+
+(24) Explain types of Normalization ?
+Most Commonly Used Normal Forms (7) :
+(a) 1NF (First Normal Form).
+(b) 2NF (Second Normal Form).
+(c) 3NF (Third Normal Form).
+(d) BCNF (Boyce & Codd Normal Form).
+(e) 4NF (Fourth Normal Form).
+(f) 5NF (Fifth Normal Form).
+(g) 6NF (Sixth Normal Form).
+
+(25) What are transaction control statements?
+Transaction Control Statements in SQL are special commands used to manage changes made by DML (Data Manipulation Language) statements like INSERT, UPDATE, and DELETE. 
+They help in grouping multiple operations into a single unit (called a transaction) and controlling whether the changes should be saved permanently or undone.
+
+** Key Transaction Control Statements **: 
+-> BEGIN TRANSACTION: Marks the start of a transaction.
+-> COMMIT: Saves all changes made by the transaction to the database. It is used to finalize the transaction.
+-> ROLLBACK: Reverts all changes made by the transaction if an error occurs, restoring the database to its previous state.
+
+Example:
+BEGIN TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
+COMMIT;
+
+(26) What is ACID Properties ?
+ACID properties are fundamental to how transactions ensure reliability, integrity, and consistency in database operations.
+By following the ACID properties, a database system ensures that transactions are processed correctly and completely, even in the event of failures or crashes.
+
+(27) Explain Each ACID Properties & How do BEGIN, COMMIT, and ROLLBACK help a database work with ACID properties?
+
+| **ACID Rule**   | **What it Means**                              | **Which Command Helps**         |
+| --------------- | ---------------------------------------------- | ------------------------------- |
+| **Atomicity**   | Do everything or do nothing                    | `ROLLBACK` cancels all if error |
+| **Consistency** | Keep data correct and follow rules             | `COMMIT` only if all OK         |
+| **Isolation**   | Transactions don’t affect each other           | Handled by database engine      |
+| **Durability**  | Once saved, data stays safe even after a crash | `COMMIT` saves changes forever  |
+
+(28) DIFFERENCE BETWEEN DROP, DELETE AND TRUNCATE?
+
+| Feature                          | `DROP`                             | `DELETE`                           | `TRUNCATE`                                   |
+| -------------------------------- | ---------------------------------- | ---------------------------------- | -------------------------------------------- |
+| **Purpose**                      | Removes the entire table structure | Removes specific rows from a table | Removes all rows from a table                |
+| **Removes Data**                 | ✅ Yes                              | ✅ Yes (as per condition)          | ✅ Yes (all rows)                            |
+| **Removes Table Structure**      | ✅ Yes                              | ❌ No                              | ❌ No                                        |
+
+(29) DIFFERENCE BETWEEN DDL VS DML?
+
+| Feature                | DDL (Data Definition Language)                          | DML (Data Manipulation Language)                  |
+| ---------------------- | ------------------------------------------------------- | ------------------------------------------------- |
+| **Full Form**          | Data Definition Language                                | Data Manipulation Language                        |
+| **Main Purpose**       | Defines **structure** of database objects (like tables) | Used to **work with data** inside the tables      |
+| **What it does**       | Creates, changes, or deletes tables, columns            | Adds, changes, or deletes data (rows) in tables   |
+| **Examples**           | `CREATE`, `ALTER`, `DROP`, `TRUNCATE`                   | `SELECT`, `INSERT`, `UPDATE`, `DELETE`            |
+| **Used by?**           | Database administrators / designers                     | Users and developers                              |
+
+(30) EXPLAIN SQL VS P/SQL?
+
+| Feature               | SQL (Structured Query Language)                           | PL/SQL (Procedural Language/SQL)                                 |
+| --------------------- | --------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Full Form**         | Structured Query Language                                 | Procedural Language extension to SQL                             |
+| **What it is?**       | A **query language** to talk to the database              | A **programming language** to write logic using SQL              |
+| **Main Purpose**      | To **fetch, insert, update, delete** data in the database | To **write programs** with **logic + SQL** (like loops, if-else) |
+| **Runs**              | One SQL query at a time                                   | A full program (block of code)                                   |
+| **Support for Logic** | ❌ No (only commands)                                     | ✅ Yes (supports logic like `if`, `for`, `while`, etc.)          |
+| **Used by**           | Anyone working with simple database tasks                 | Developers writing complex business logic                        |
+
+(31) WHAT IS SQL INJECTION?
+SQL Injection is a type of hacking where an attacker puts harmful SQL code  deleting tables, or bypassing login.
+🔐 How to Prevent It?
+-> Use prepared statements.
+-> Use frameworks or ORMs (like JPA, Hibernate).
+
+(32) What is Stored Procedure?
+a stored procedure is a group of T-SQL Statements. if you have a situation, where you write the same query over & over again,
+you can save that specific query as a stored procedure and call it just by it's name.
+
+(33) Difference between Stored Procedure and View?
+
+| Feature                 | **Stored Procedure**                                   | **View**                                                    |
+| ----------------------- | ------------------------------------------------------ | ----------------------------------------------------------- |
+| **Stored in DB?**       | ✅ Yes, stored in the database with a name              | ❌ Not physical, just a saved SQL query (virtual table)      |
+| **Execution**           | Can be executed using `CALL procedure_name()`          | Used like a table: `SELECT * FROM view_name`                |
+| **Accepts Parameters?** | ✅ Yes, can take input/output parameters                | ❌ No parameters allowed                                     |
+| **Can Contain Logic?**  | ✅ Yes (can use `IF`, `LOOP`, `CASE`, etc.)             | ❌ No logic; only a single `SELECT` query                    |
+| **Can Modify Data?**    | ✅ Yes (can perform `INSERT`, `UPDATE`, `DELETE`, etc.) | ❌ Generally no; mostly used to display data                 |
+| **Used For**            | Reusable complex operations or business logic          | Simplifying complex queries; showing data in a specific way |
+
+

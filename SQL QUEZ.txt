@@ -1,0 +1,42 @@
+                                   SQL QUEZ
+
+(1) what database types refers & tell Database Types ?
+(2) Difference Between SQL and No-SQL?
+(3) What Database Management Systems (DBMS) refers & tell DBMS types?
+(4) Difference between DBMS and RDBMS ?
+(5) What is View ?
+(6) What are Sub Queries ?
+(7) what is Union ?
+(8) What are Joins & EXPLAIN Each-one JOINS ?
+(9) Explain  general order of SQL clauses in a SELECT query?
+(10) What are Aggregate Functions?
+(11) What are SQL operators? Describe their types ?
+(12) EXPLAIN AND , OR, BETWEEN, IN, NOT Operators ?
+(13) What is a clause in SQL and why is it used , Tell names of Cluse?
+(14) Explain Where Cluse?
+(15) Explain having cluse?
+(16) Explain Group By Cluse?
+(17) Explain Order By Cluse?
+(18) Explain Limit Cluse ?
+(19) What is a constraint in SQL, Explain Types of Constraints in SQL?
+(20) Explain Difference between Primary key and Forein key ?
+(21) What are SQL commands and what are their types ?
+(22) What are the different data types supported in SQL?
+(23) WHAT IS NORMALIZATION?
+(24) Explain types of Normalization ?
+(25) What are transaction control statements?
+(26) What is ACID Properties ?
+(27) Explain Each ACID Properties & How do BEGIN, COMMIT, and ROLLBACK help a database work with ACID properties?
+(28) DIFFERENCE BETWEEN DROP, DELETE AND TRUNCATE?
+(29) DIFFERENCE BETWEEN DDL VS DML?
+(30) EXPLAIN SQL VS P/SQL?
+(31) WHAT IS SQL INJECTION?
+(32) What is Stored Procedure?
+(33) Difference between Stored Procedure and View?
+
+
+
+
+
+
+
