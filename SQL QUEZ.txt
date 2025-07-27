@@ -34,6 +34,10 @@
 (32) What is Stored Procedure?
 (33) Difference between Stored Procedure and View?
 
+---------------------------------------------------------- CHATGPT QUESTION ----------------------------------------------------------------------------------
+
+
+
 
 
 
