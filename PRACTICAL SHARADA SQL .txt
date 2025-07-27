@@ -17,52 +17,55 @@ TABLE RELATED QUARIES
 -----------------------------------------------------------------------------------------------------------------------
 (1) show tables
 
-CREATE:= 
+(2) CREATE:= 
 
-(1) create table <table-name> (<column1-name> datatype constraint);
-(2) create table if not exists emp (<col1-name> datatype constraint);
-
-
-INSERT :=
-
-(1) insert into <table-name> (col1,col2) values (col1-val1,col2-val2),(col2-val2,col2-val2);
+ a.  create table <table-name> (<column1-name> datatype constraint);
+ b.  create table if not exists emp (<col1-name> datatype constraint);
 
 
+(3) INSERT :=
 
-UPDATES:=
-
-on safe mode: SET SQL_SAFE_UPDATES=0;
-(1) update <table-name> set col1=val1,col2=val2 where condition;  / update temp set name='sahil' , email='sahil@gmail.com' where e_id=1;
-
-
-DELETE:=
-
-(1) delete from <table-name> where condition; 
-(2) delete from <table-name> where e_id > 7;
+  a. insert into <table-name> (col1,col2) values (col1-val1,col2-val2),(col2-val2,col2-val2);
 
 
 
-ALTER:=
+(4) UPDATES:=
 
-ADD COLUMN:
-(1) alter table <table-name> add column <column-name> datatype constraint;
-
-DROP COLUMN:
-(1) alter table <table-name> drop column<column-name> ;
-
-RENAME COLUMN:
-(1) ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
-(2) ALTER TABLE <table-name> change column <old-name> <new-name> datatype <new-constraint>
-
-MODIFY:
-(1) ALTER TABLE <table-name> modify <col-name> <new-datatype> <new-constraint>
-
-RENAME TABLE:
-(1) alter table <table-name> rename to <new-table-name>
+Note:- on safe mode: SET SQL_SAFE_UPDATES=0;
+  a. update <table-name> set col1=val1,col2=val2 where condition;  / update temp set name='sahil' , email='sahil@gmail.com' where e_id=1;
 
 
-TRUNCATE:=
-(1) truncate table <table-name> 
+(5) DELETE:=
+
+    a. delete from <table-name> where condition; 
+    b. delete from <table-name> where e_id > 7;
+
+ (6) Drop :=
+      a. DROP TABLE <table-name>;
+      b. DROP TABLE IF EXISTS <table-name>;
+
+
+(7) ALTER:=
+
+   a. ADD COLUMN:
+   ->  alter table <table-name> add column <column-name> datatype constraint;
+
+   b. DROP COLUMN:
+    -> alter table <table-name> drop column<column-name> ;
+
+   c. RENAME COLUMN:
+     ->  ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+     ->  ALTER TABLE <table-name> change column <old-name> <new-name> datatype <new-constraint>
+
+   d. MODIFY:
+    ->  ALTER TABLE <table-name> modify <col-name> <new-datatype> <new-constraint>
+
+    f. RENAME TABLE:
+    ->  alter table <table-name> rename to <new-table-name>
+
+
+ (8) TRUNCATE:=
+    a. truncate table <table-name> 
 -------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
 
