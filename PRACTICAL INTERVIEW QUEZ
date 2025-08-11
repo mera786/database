@@ -1,3 +1,1314 @@
+
+ORDER TO PRACTICE BELOW QUESTION SECTION WISE ?
+
+1️⃣ Section 1 – Basics of SQL
+(SELECT, FROM, WHERE, Tables, Rows, Columns)
+
+2️⃣ Section 2 – Filtering & Sorting
+(WHERE with operators, LIKE, ORDER BY, LIMIT/TOP)
+
+3️⃣ Section 3 – Functions & Expressions
+(COUNT, SUM, AVG, MAX, MIN, GROUP BY, HAVING, DISTINCT, AS)
+
+4️⃣ Section 7 – Data Manipulation
+(INSERT, UPDATE, DELETE, Transactions)
+
+5️⃣ Section 6 – Table Management
+(CREATE, ALTER, DROP, Constraints, Default values)
+
+6️⃣ Section 4 – Joins
+(INNER, LEFT, RIGHT, FULL, SELF, CROSS)
+
+7️⃣ Section 5 – Subqueries & Nested Queries
+(In SELECT, WHERE, FROM, Correlated, EXISTS/NOT EXISTS)
+
+
+
+Step 1 – Master Dataset
+We’ll first create a sample database called CompanyDB with 5–6 interrelated tables so every section can use them.
+
+Tables:
+
+Employees – Basic employee info
+
+Departments – Department info
+
+Projects – Projects info
+
+Salaries – Salary history
+
+Attendance – Attendance records
+
+Clients – Client info (optional for JOIN practice)
+
+
+
+Schema & Sample Data: 
+________________________
+
+CREATE DATABASE CompanyDB;
+USE CompanyDB;
+
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50) NOT NULL,
+    location VARCHAR(50)
+);
+
+INSERT INTO Departments VALUES
+(1, 'HR', 'New York'),
+(2, 'IT', 'San Francisco'),
+(3, 'Finance', 'Chicago'),
+(4, 'Marketing', 'Boston');
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    dept_id INT,
+    hire_date DATE,
+    gender CHAR(1),
+    email VARCHAR(100),
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+INSERT INTO Employees VALUES
+(101, 'John', 'Doe', 2, '2019-06-12', 'M', 'john.doe@company.com'),
+(102, 'Jane', 'Smith', 1, '2020-01-15', 'F', 'jane.smith@company.com'),
+(103, 'Mike', 'Brown', 3, '2018-09-23', 'M', 'mike.brown@company.com'),
+(104, 'Sara', 'Wilson', 2, '2021-03-10', 'F', 'sara.wilson@company.com'),
+(105, 'David', 'Lee', 4, '2019-11-30', 'M', 'david.lee@company.com');
+
+CREATE TABLE Salaries (
+    salary_id INT PRIMARY KEY,
+    emp_id INT,
+    amount DECIMAL(10,2),
+    from_date DATE,
+    to_date DATE,
+    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
+);
+
+INSERT INTO Salaries VALUES
+(1, 101, 75000, '2022-01-01', '2022-12-31'),
+(2, 102, 65000, '2022-01-01', '2022-12-31'),
+(3, 103, 80000, '2022-01-01', '2022-12-31'),
+(4, 104, 70000, '2022-01-01', '2022-12-31'),
+(5, 105, 72000, '2022-01-01', '2022-12-31');
+
+CREATE TABLE Projects (
+    project_id INT PRIMARY KEY,
+    project_name VARCHAR(100),
+    dept_id INT,
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+INSERT INTO Projects VALUES
+(1, 'Website Redesign', 2, '2022-02-01', '2022-06-30'),
+(2, 'Recruitment Drive', 1, '2022-03-01', '2022-04-30'),
+(3, 'Financial Audit', 3, '2022-01-01', '2022-05-31'),
+(4, 'Social Media Campaign', 4, '2022-04-01', '2022-07-31');
+
+CREATE TABLE Attendance (
+    att_id INT PRIMARY KEY,
+    emp_id INT,
+    date DATE,
+    status VARCHAR(10),
+    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
+);
+
+INSERT INTO Attendance VALUES
+(1, 101, '2022-06-01', 'Present'),
+(2, 102, '2022-06-01', 'Absent'),
+(3, 103, '2022-06-01', 'Present'),
+(4, 104, '2022-06-01', 'Present'),
+(5, 105, '2022-06-01', 'Present');
+
+
+
+************************************************************ SECTIONWISE *************************************************************************************
+
+Section 1: Basics of SQL
+Topics Covered:
+
+What is SQL?
+DBMS vs RDBMS (theory only)
+Tables, Rows, Columns
+SELECT, FROM, WHERE
+
+
+
+Schema & Data for Practice :
+
+CREATE DATABASE CompanyDB;
+USE CompanyDB;
+
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    JoinDate DATE
+);
+
+INSERT INTO Employees (EmpID, FirstName, LastName, Department, Salary, JoinDate) VALUES
+(1, 'John', 'Doe', 'HR', 45000.00, '2020-01-15'),
+(2, 'Jane', 'Smith', 'IT', 60000.00, '2019-03-12'),
+(3, 'Sam', 'Brown', 'Finance', 55000.00, '2021-07-23'),
+(4, 'Emily', 'Davis', 'IT', 65000.00, '2018-11-30'),
+(5, 'Michael', 'Wilson', 'Marketing', 48000.00, '2020-06-18'),
+(6, 'Laura', 'Taylor', 'Finance', 52000.00, '2019-09-09'),
+(7, 'David', 'Anderson', 'HR', 47000.00, '2021-04-25'),
+(8, 'Sophia', 'Thomas', 'IT', 70000.00, '2018-02-14'),
+(9, 'Daniel', 'Jackson', 'Marketing', 50000.00, '2020-12-05'),
+(10, 'Olivia', 'White', 'Finance', 58000.00, '2021-01-11');
+
+
+60 Practice Questions  :
+
+Easy (20 Qs)
+Select all records from the Employees table.
+
+Display only FirstName and LastName of all employees.
+
+Retrieve all employees who work in the IT department.
+
+Show EmpID and Department of all employees.
+
+Get details of the employee whose EmpID is 3.
+
+Retrieve employees with salary greater than 50,000.
+
+Show all employees who joined after 2020-01-01.
+
+Display the names of employees in the Finance department.
+
+Retrieve FirstName of all employees, without duplicates.
+
+Show employees who have salary exactly equal to 48000.
+
+Display FirstName and JoinDate of all employees.
+
+Show EmpID and Salary for all employees in the HR department.
+
+Retrieve employees whose department is either IT or Marketing.
+
+Show all employees whose salary is less than 55,000.
+
+Display employees who joined in 2021.
+
+Show all employees with EmpID between 3 and 6.
+
+Retrieve the department of employee Olivia White.
+
+Show only the first 5 rows from the Employees table.
+
+Display all employees sorted by FirstName in ascending order.
+
+Show employees sorted by Salary in descending order.
+
+
+Medium (20 Qs) :
+
+Show the top 3 highest-paid employees.
+
+Retrieve employees whose FirstName starts with ‘J’.
+
+Display employees whose last name contains ‘son’.
+
+Show employees in departments other than IT.
+
+Display employees whose salary is between 50,000 and 60,000.
+
+Show the oldest joining date in the company.
+
+Retrieve the most recently joined employee.
+
+Show all employees except the one with EmpID 5.
+
+Display full name (FirstName LastName) of all employees.
+
+Show employees whose salary is not null.
+
+Retrieve employees who joined before 2019.
+
+Show employees who joined after 2019-01-01 but earn less than 55,000.
+
+Display the department of each employee without duplicates.
+
+Show all employees ordered by JoinDate ascending.
+
+Retrieve the first 3 employees in the Finance department by join date.
+
+Display the highest salary in the company.
+
+Show the lowest salary in the company.
+
+Retrieve employees whose FirstName has exactly 5 characters.
+
+Show employees with FirstName ending in ‘a’.
+
+Retrieve employees in the IT department earning more than 65,000.
+
+
+Low-Hard (20 Qs) :
+
+Retrieve the second highest salary from the company.
+
+Retrieve the second lowest salary.
+
+Display employees whose salary is higher than the average salary.
+
+Show employees who joined in the same year as Michael Wilson.
+
+Display the number of employees in each department.
+
+Retrieve employees who have the same department as Jane Smith.
+
+Show employees with the same salary as David Anderson.
+
+Retrieve employees who joined within the last 2 years.
+
+Display employees with salaries in the top 30% range.
+
+Show the employee(s) with the longest name in the company.
+
+Retrieve employees whose FirstName and LastName start with the same letter.
+
+Show employees in departments with more than 2 members.
+
+Display employees who joined on a Monday.
+
+Retrieve employees hired in the same month as Olivia White.
+
+Display salaries with their rank (highest to lowest).
+
+Show employees earning above the company’s median salary.
+
+Retrieve employees who joined exactly on the first day of any month.
+
+Display all employees with salary rounded to the nearest thousand.
+
+Retrieve the department(s) with the highest average salary.
+
+Display the employee with the earliest joining date in each department.
+
+
+
+Section 2 – Filtering & Sorting : 
+
+📂 Schema for Filtering & Sorting :
+
+-- Table: Customers
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    City VARCHAR(50),
+    Country VARCHAR(50),
+    Age INT
+);
+
+INSERT INTO Customers (CustomerID, FirstName, LastName, City, Country, Age) VALUES
+(1, 'John', 'Doe', 'New York', 'USA', 28),
+(2, 'Jane', 'Smith', 'London', 'UK', 34),
+(3, 'Michael', 'Brown', 'Paris', 'France', 25),
+(4, 'Emily', 'Davis', 'Berlin', 'Germany', 30),
+(5, 'Daniel', 'Wilson', 'Sydney', 'Australia', 42),
+(6, 'Sophia', 'Taylor', 'New York', 'USA', 23),
+(7, 'David', 'Johnson', 'Paris', 'France', 38),
+(8, 'Emma', 'Thomas', 'Berlin', 'Germany', 29),
+(9, 'Olivia', 'White', 'London', 'UK', 31),
+(10, 'James', 'Harris', 'Sydney', 'Australia', 27);
+
+-- Table: Orders
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    Amount DECIMAL(10, 2),
+    Status VARCHAR(20),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+INSERT INTO Orders (OrderID, CustomerID, OrderDate, Amount, Status) VALUES
+(101, 1, '2024-01-15', 500.00, 'Completed'),
+(102, 2, '2024-02-10', 1500.00, 'Pending'),
+(103, 3, '2024-02-12', 800.00, 'Completed'),
+(104, 4, '2024-03-05', 200.00, 'Cancelled'),
+(105, 5, '2024-03-15', 1200.00, 'Completed'),
+(106, 6, '2024-04-01', 300.00, 'Pending'),
+(107, 7, '2024-04-05', 450.00, 'Completed'),
+(108, 8, '2024-04-15', 700.00, 'Completed'),
+(109, 9, '2024-05-01', 900.00, 'Pending'),
+(110, 10, '2024-05-10', 1000.00, 'Completed');
+
+
+
+🔹 Section 2 – Filtering & Sorting (WHERE, LIKE, BETWEEN, IN, ORDER BY, LIMIT)
+🟢 20 Easy Questions
+Get all customers from USA.
+
+Show all orders where status is 'Completed'.
+
+Find customers older than 30.
+
+Get all orders where amount is greater than 500.
+
+List customers whose first name is 'Emma'.
+
+Show customers from London or Berlin.
+
+Find orders placed on '2024-04-01'.
+
+Get all customers whose age is less than 30.
+
+Show orders with amount exactly 900.00.
+
+Find customers from UK using IN clause.
+
+Get orders where amount is between 500 and 1000.
+
+Show customers where City is not 'Paris'.
+
+Find orders where status is 'Pending' or 'Cancelled'.
+
+List all customers ordered by Age ascending.
+
+Show customers ordered by LastName descending.
+
+Get first 5 customers sorted by CustomerID.
+
+Show the youngest customer.
+
+Find the oldest customer.
+
+Show all customers from 'Germany' sorted by FirstName.
+
+Get orders sorted by Amount descending.
+
+🟡 20 Medium Questions
+Get customers whose first name starts with 'J'.
+
+Find orders where amount is greater than 500 and status is 'Completed'.
+
+Show customers whose city is 'New York' and age is less than 30.
+
+List orders placed in February 2024.
+
+Get customers whose last name contains 'son'.
+
+Show orders where status is 'Completed' and amount is less than 1000.
+
+Find customers from either 'USA' or 'Australia' but age greater than 25.
+
+Get orders where amount is not between 300 and 900.
+
+Find customers whose city name has 5 letters.
+
+Show orders placed after '2024-03-01' but before '2024-05-01'.
+
+Get the top 3 highest order amounts.
+
+Find customers whose first name ends with 'a'.
+
+Show orders where the status is not 'Completed'.
+
+Get all customers whose age is a multiple of 5.
+
+Find customers with first name in the list ('John', 'David', 'Emma').
+
+Show orders sorted first by status, then by amount descending.
+
+Get the second highest order amount.
+
+Show the two youngest customers from 'USA'.
+
+Find customers not from 'UK' and not from 'France'.
+
+Get orders where day of the order date is greater than 10.
+
+🔴 20 Low-Hard Questions
+Get customers whose first name length is more than 5 characters.
+
+Find orders where amount is greater than average order amount.
+
+Show customers who have placed more than 1 order.
+
+Get customers who have never placed an order.
+
+Find the top 3 oldest customers from 'USA'.
+
+Show orders from customers living in 'Berlin' or 'Paris', amount greater than 500.
+
+Find customers whose last name starts with 'W' and age is between 25 and 40.
+
+Get orders where amount is greater than all orders placed by customers from 'UK'.
+
+Show customers who placed orders only in April 2024.
+
+Get customers whose age is within 2 years of the youngest customer’s age.
+
+Find orders that are among the top 30% highest amounts.
+
+Get customers from the country with the most orders.
+
+Find customers whose first name contains 'a' exactly twice.
+
+Get orders placed on weekends.
+
+Show customers where city name starts and ends with the same letter.
+
+Get customers who placed orders in both February and April 2024.
+
+Show orders that are higher than the second highest order amount.
+
+Find the city with the highest average customer age.
+
+Get customers from countries where no customer is younger than 25.
+
+Find orders where amount is greater than the customer’s age multiplied by 20.
+
+
+
+Section 3: Functions & Expressions :
+
+📌 Sample Schema & Data for Section 3 :
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10,2),
+    hire_date DATE
+);
+
+INSERT INTO employees (emp_id, first_name, last_name, department, salary, hire_date) VALUES
+(1, 'John', 'Doe', 'HR', 50000, '2018-06-15'),
+(2, 'Jane', 'Smith', 'Finance', 65000, '2019-01-12'),
+(3, 'Michael', 'Brown', 'IT', 75000, '2017-08-20'),
+(4, 'Emily', 'Davis', 'IT', 80000, '2020-03-05'),
+(5, 'Daniel', 'Wilson', 'Finance', 62000, '2016-11-30'),
+(6, 'Sophia', 'Taylor', 'HR', 55000, '2019-07-18'),
+(7, 'James', 'Anderson', 'Finance', 70000, '2015-09-25'),
+(8, 'Olivia', 'Thomas', 'IT', 72000, '2021-05-10'),
+(9, 'William', 'Moore', 'Finance', 68000, '2014-02-14'),
+(10, 'Ava', 'Martin', 'HR', 51000, '2020-12-01');
+
+
+
+1️⃣ Easy Level (20 Questions) – Functions, Aliases, DISTINCT
+Find the total number of employees in the table.
+
+Display the highest salary in the employees table.
+
+Display the lowest salary in the employees table.
+
+Show the average salary of all employees.
+
+Display the total salary paid to all employees.
+
+Show the number of employees in the HR department.
+
+Find the number of distinct departments in the company.
+
+Display the average salary of employees in the IT department.
+
+Find the sum of salaries for Finance department employees.
+
+Show the minimum salary in the Finance department.
+
+Count how many employees joined after 2019.
+
+Show the maximum salary for employees hired before 2020.
+
+Display the total salary paid to IT employees.
+
+Find the number of employees whose salary is above 60,000.
+
+Display the average salary for each department.
+
+Show the total salary paid to HR employees.
+
+Find the highest salary in IT department.
+
+Display the number of employees with salary between 50,000 and 70,000.
+
+Find the number of employees whose first name starts with 'J'.
+
+Display the number of employees hired in 2020.
+
+2️⃣ Medium Level (20 Questions) – GROUP BY, HAVING, Expressions
+Display each department and the number of employees in it.
+
+Show each department and its total salary expense.
+
+Display the average salary of each department in descending order.
+
+Find departments with average salary above 65,000.
+
+Display departments where the total salary is more than 200,000.
+
+Show each department, its highest salary, and lowest salary.
+
+Find the total number of employees hired each year.
+
+Display departments with more than 3 employees.
+
+Show the department with the highest total salary.
+
+Find employees who have a salary greater than the average salary of all employees.
+
+Show each year and the number of employees hired in that year.
+
+Display the total salary for each year of hiring.
+
+Find the average salary per department excluding the IT department.
+
+Show departments where the minimum salary is greater than 55,000.
+
+Display each department along with total salary and average salary.
+
+Find departments where the number of employees is less than 3.
+
+Show employees hired in the same year as ‘Emily Davis’.
+
+Display the average salary rounded to 2 decimal places for each department.
+
+Find the number of employees hired in each month across all years.
+
+Show the department that has the highest average salary.
+
+3️⃣ Low-Level Hard (20 Questions) – Complex GROUP BY + HAVING + Subquery with Functions
+Find the employee(s) with the second highest salary.
+
+Find the employee(s) with the second lowest salary.
+
+Show departments where average salary is greater than the average salary of IT department.
+
+Find employees who earn more than the highest salary in HR department.
+
+Display departments where total salary is more than twice the total salary of Finance department.
+
+Show employees who have the same salary as another employee.
+
+Find the department with the most recent hire date.
+
+Show the difference between highest and lowest salary in each department.
+
+Display the department with the smallest salary gap (max - min).
+
+Show the name of the employee who earns the closest to the average salary of all employees.
+
+Find the percentage contribution of each department’s salary to the total salary.
+
+Display employees whose salary is above the department average.
+
+Find the department where all employees have salary greater than 60,000.
+
+Show the average salary for employees hired after 2018 grouped by department.
+
+Display the top 2 highest paid employees in each department.
+
+Find employees whose salary is within 10% of the highest salary in their department.
+
+Show the average salary for each hiring year.
+
+Find the oldest hired employee in each department.
+
+Display the difference in average salary between the highest and lowest paid departments.
+
+Show the top 3 departments in terms of total salary expense.
+
+
+
+Section 4: JOINS (Very Important)  :
+
+Schema for JOIN Practice :
+
+-- Employees Table
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    dept_id INT,
+    manager_id INT
+);
+
+INSERT INTO Employees VALUES
+(1, 'Alice', 101, NULL),
+(2, 'Bob', 102, 1),
+(3, 'Charlie', 101, 1),
+(4, 'David', 103, 2),
+(5, 'Eva', NULL, 2);
+
+-- Departments Table
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);
+
+INSERT INTO Departments VALUES
+(101, 'HR'),
+(102, 'Finance'),
+(103, 'IT'),
+(104, 'Marketing');
+
+-- Projects Table
+CREATE TABLE Projects (
+    proj_id INT PRIMARY KEY,
+    proj_name VARCHAR(50),
+    dept_id INT
+);
+
+INSERT INTO Projects VALUES
+(201, 'Recruitment Drive', 101),
+(202, 'Budget Planning', 102),
+(203, 'Website Upgrade', 103),
+(204, 'Social Media Campaign', 104);
+
+-- Salaries Table
+CREATE TABLE Salaries (
+    emp_id INT PRIMARY KEY,
+    salary DECIMAL(10,2)
+);
+
+INSERT INTO Salaries VALUES
+(1, 70000),
+(2, 50000),
+(3, 55000),
+(4, 60000),
+(5, 45000);
+
+
+
+Section 4: JOINS — 60 Questions
+A. Easy Level (20 Questions)
+Basic understanding of INNER, LEFT, RIGHT, FULL joins.
+
+List all employees with their department names using INNER JOIN.
+
+List all employees and their department names using LEFT JOIN (include employees without department).
+
+List all departments and employees using RIGHT JOIN (include departments without employees).
+
+Show all employees with their salary using INNER JOIN.
+
+Show all employees and their salary (include employees without salary) using LEFT JOIN.
+
+List all department names and project names using INNER JOIN.
+
+List all departments and projects (include departments without projects) using LEFT JOIN.
+
+Show all projects and departments using RIGHT JOIN.
+
+Display employee names and project names based on department match (INNER JOIN between 3 tables).
+
+Show all employees along with their department name and project name using LEFT JOINs.
+
+Display employees without departments (LEFT JOIN with NULL filter).
+
+Display departments without employees (RIGHT JOIN with NULL filter).
+
+List all combinations of employee and project (CROSS JOIN).
+
+Show employees with department names, ordered by dept_name.
+
+Show employees who belong to dept_id = 101 along with department name.
+
+Display salary details for emp_id = 3 using INNER JOIN.
+
+Show all projects belonging to dept_id = 103.
+
+List all departments having dept_id less than 104 with employees.
+
+Display all employees and departments sorted by emp_name ASC.
+
+Display employees and departments where dept_name starts with ‘F’.
+
+B. Medium Level (20 Questions)
+Using joins with conditions, multiple tables, aggregations.
+
+Show department names along with the number of employees in each department.
+
+List all employees with department name and salary, even if department or salary is missing.
+
+Show all employees who have a manager (SELF JOIN).
+
+Show all employees with their manager's name (SELF JOIN).
+
+Display departments that have more than 1 employee.
+
+List projects with department name and total employees working in that department.
+
+Show employees working in departments that have projects assigned.
+
+Display employees with salary greater than 50000 along with department name.
+
+Show all employees and their project names, even if they don’t have a project.
+
+List the highest-paid employee in each department.
+
+Show employees who work in departments without any projects.
+
+Show departments that don’t have any employees.
+
+List employees whose department name is ‘Finance’.
+
+Show employees whose department has more than 1 project.
+
+Display projects with no employees working in them.
+
+Show employee details with manager’s salary also shown.
+
+Show average salary per department using JOIN.
+
+Show employees earning above their department’s average salary.
+
+Show employees whose salary is less than their manager’s salary.
+
+Show all employees along with their department and project name, sorted by salary DESC.
+
+C. Low-Hard Level (20 Questions)
+Slightly tricky conditions, multiple joins, filtering on aggregates.
+
+Show the department name with the maximum total salary.
+
+Show the department that has the least number of employees.
+
+Show the employee(s) with the second highest salary in their department.
+
+Display employees who earn more than the average salary of all employees.
+
+Show all departments with total salary > 120000.
+
+List all employees who share the same manager.
+
+Show employees whose manager works in a different department.
+
+Find the highest-paid employee who doesn’t have a department.
+
+Show all projects with the number of employees from that department working on it.
+
+List employees whose salary is the minimum in their department.
+
+Show employees whose department name starts and ends with the same letter.
+
+Find employees working in the same department as 'Bob'.
+
+Show employees who are managers but also report to someone else.
+
+Find employees who are the only ones in their department.
+
+Show employees who earn more than any employee in the HR department.
+
+Find all departments where no project is assigned but employees exist.
+
+Show employees earning more than the department's average salary but less than the max salary.
+
+Show employees working on the same project as an employee with salary above 60000.
+
+Show employees who do not work in IT or Marketing departments.
+
+Show top 3 highest-paid employees in each department.
+
+
+
+Section 5: Subqueries & Nested Queries  :
+
+Schema for Practice :
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Country VARCHAR(50),
+    Age INT
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    ProductID INT,
+    OrderDate DATE,
+    Quantity INT,
+    Price DECIMAL(10,2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(50),
+    Category VARCHAR(50),
+    Price DECIMAL(10,2)
+);
+
+
+
+20 Easy Subquery Questions
+Find customers whose age is greater than the average age of all customers.
+
+List all products whose price is greater than the price of "Laptop".
+
+Find customers who have placed at least one order.
+
+Get product names from the Products table that have been ordered.
+
+Find the most expensive product using a subquery.
+
+Find orders where quantity is above the average quantity of all orders.
+
+Get the names of customers who have ordered “Smartphone”.
+
+List customers who live in the same country as "John Doe".
+
+Find all products in the same category as "Tablet".
+
+Get the details of the cheapest product in the Products table.
+
+Find all customers older than the youngest customer from the USA.
+
+Find customers who have not placed any orders.
+
+Get products with a price greater than the average price in their category.
+
+Get the total number of products in the “Electronics” category using a subquery.
+
+Find the product with the second-highest price.
+
+Get customer names whose IDs are in the Orders table.
+
+Find all customers who have placed orders for more than 5 items.
+
+List products that are cheaper than the average price of all products.
+
+Find the average age of customers who have ordered a "Laptop".
+
+Find all products that were never ordered.
+
+20 Medium Subquery Questions
+Find customers who have spent more than the average spending of all customers.
+
+Get the name of customers who have ordered all products in the “Accessories” category.
+
+Find the top 3 most expensive products using a subquery.
+
+List orders where the product’s price is higher than the average product price.
+
+Find the category that has the highest average product price.
+
+Get names of customers who have placed more orders than the average order count.
+
+Find the country with the maximum number of customers.
+
+List customers whose age is in the top 5 ages among all customers.
+
+Find products ordered by customers from "Canada".
+
+Get customers who ordered the cheapest product.
+
+Find products whose total sales amount is above the average sales of all products.
+
+List products ordered by every customer from "USA".
+
+Find customers who ordered products only from the “Electronics” category.
+
+Get the order IDs of orders that include the most expensive product.
+
+Find products that are more expensive than the average product in their category but cheaper than the max product in that category.
+
+List customers who have placed orders in both January and February 2024.
+
+Get customers whose order quantity total is in the top 3 among all customers.
+
+Find customers who have the same age as the oldest customer from India.
+
+Get products ordered by at least 50% of all customers.
+
+Find the product category with the highest number of orders.
+
+20 Low-Level Hard Subquery Questions
+Find customers who have placed orders for all products in the database.
+
+Get products whose total sales are greater than the total sales of “Smartphone”.
+
+Find the customers who have never ordered products from the “Electronics” category.
+
+Get customers who have ordered both the cheapest and the most expensive product.
+
+Find the top 2 customers with the highest spending using a subquery.
+
+Get product categories whose average sales are greater than the average sales of all categories.
+
+Find orders whose price per unit is above the average price per unit for all orders.
+
+Get customers who have ordered more quantity of a product than the average quantity for that product.
+
+Find the top 3 products with the highest total sales in the last 6 months.
+
+Get the customers who placed an order every month in 2024.
+
+Find customers who have ordered products from at least 3 different categories.
+
+Get customers whose first order date is earlier than the first order date of “John Doe”.
+
+Find products that have been ordered in quantities greater than the maximum quantity of “Tablet”.
+
+Get customers who ordered products in exactly two categories.
+
+Find products that have been ordered by all customers from the USA.
+
+Get customers who ordered more than average quantity for every product they ordered.
+
+Find the customer(s) whose total spending is closest to the average spending of all customers.
+
+Get products ordered in consecutive months without a gap.
+
+Find customers who have ordered the same set of products as “John Doe”.
+
+Get the second-highest spending customer for each country.
+
+
+
+Section 6: Table Management with 60 questions :
+
+📂 Sample Schema for Practice :
+
+-- Department Table
+CREATE TABLE Department (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(50) UNIQUE NOT NULL,
+    Location VARCHAR(50) DEFAULT 'Head Office'
+);
+
+-- Employee Table
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(50) NOT NULL,
+    Age INT,
+    Salary DECIMAL(10, 2),
+    DeptID INT,
+    CONSTRAINT fk_department FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
+);
+
+
+INSERT INTO Department VALUES 
+(1, 'HR', 'New York'),
+(2, 'IT', 'Chicago'),
+(3, 'Finance', DEFAULT);
+
+INSERT INTO Employee VALUES
+(101, 'John Doe', 30, 50000, 1),
+(102, 'Jane Smith', 25, 60000, 2),
+(103, 'Michael Brown', 40, 80000, 3);
+
+
+
+
+🟢 20 Easy Questions
+Create a table called Products with columns ProductID, ProductName, and Price.
+
+Add a NOT NULL constraint to the ProductName column.
+
+Create a table Customers with a PRIMARY KEY on CustomerID.
+
+Drop the Products table.
+
+Add a new column Email to the Employee table.
+
+Change the data type of the Salary column in Employee to FLOAT.
+
+Drop the column Email from the Employee table.
+
+Create a table Orders with OrderID as primary key and OrderDate as DATE.
+
+Set a default value for the Location column in Department to 'Remote'.
+
+Add a UNIQUE constraint to the EmpName column in Employee.
+
+Drop the UNIQUE constraint from EmpName in Employee.
+
+Create a table with a composite primary key (StudentID, CourseID).
+
+Drop the foreign key constraint from Employee.
+
+Rename the column EmpName to FullName in Employee.
+
+Create a table Suppliers with an auto-increment SupplierID.
+
+Drop the Department table.
+
+Create a TEMPORARY table TempData with some columns.
+
+Create a table that copies the structure of Employee without data.
+
+Create a table that copies the structure and data of Department.
+
+Drop all data from Employee without deleting the table.
+
+🟡 20 Medium Questions
+Create a table Projects with columns ProjectID, ProjectName, StartDate, EndDate, and DeptID (foreign key referencing Department).
+
+Alter Projects to add a NOT NULL constraint to ProjectName.
+
+Add a CHECK constraint to Employee to ensure Salary > 0.
+
+Remove the CHECK constraint from Employee.
+
+Add a DEFAULT value of 25 for Age in Employee.
+
+Drop the DEFAULT value from Age in Employee.
+
+Change the column name DeptName to DepartmentName in Department.
+
+Change the data type of DeptName to VARCHAR(100).
+
+Drop the column Location from Department.
+
+Add a foreign key in Projects that references DeptID in Department with ON DELETE CASCADE.
+
+Drop the ON DELETE CASCADE constraint from Projects.
+
+Create a table Training with TrainingID as primary key and EmpID as foreign key referencing Employee.
+
+Add a composite key (DeptID, ProjectID) to Projects.
+
+Create a copy of Employee structure only if it doesn’t already exist.
+
+Drop the Projects table only if it exists.
+
+Create a table ArchivedEmployees that copies all employees with Salary > 60000.
+
+Create a VIEW to display all Employee names and their department names.
+
+Create a VIEW to display all employees from IT department only.
+
+Rename table Employee to Staff.
+
+Rename table Staff back to Employee.
+
+🔴 20 Low-Level Hard Questions
+Create a table Inventory with a ProductID primary key, Quantity (must be >= 0), and a foreign key referencing Products.
+
+Alter Inventory to change the Quantity default value to 10.
+
+Add a CHECK constraint on Age in Employee to ensure it’s between 18 and 60.
+
+Drop the CHECK constraint on Age.
+
+Create a table Branch with a self-referencing foreign key for ParentBranchID.
+
+Alter Employee to make DeptID NOT NULL.
+
+Create a BACKUP table for Department and Employee combined using a JOIN.
+
+Partition a table Sales by YEAR(SaleDate) (syntax depends on DB).
+
+Create a table AuditLog with a timestamp column defaulting to current time.
+
+Alter Projects to add a Status column with allowed values 'Active', 'Completed', 'Pending' using CHECK.
+
+Drop the CHECK constraint from Status.
+
+Create a table Course with composite key (CourseID, BatchID) and a foreign key on BatchID referencing Batches.
+
+Add an index on Salary in Employee.
+
+Drop the index from Salary in Employee.
+
+Create a table with ENUM type for gender (Male, Female, Other).
+
+Add a foreign key to Training with ON UPDATE CASCADE.
+
+Drop the foreign key with ON UPDATE CASCADE.
+
+Create a table DeletedEmployees that automatically stores deleted Employee rows using a trigger.
+
+Create a table Config that can store only one row of settings using a CHECK constraint.
+
+Merge Department and Projects tables into a new table DeptProjects with selected columns.
+
+
+Section 7 – Data Manipulation  :
+
+Schema & Sample Data :
+
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50),
+    location VARCHAR(50)
+);
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    age INT,
+    salary DECIMAL(10,2),
+    dept_id INT,
+    hire_date DATE,
+    CONSTRAINT fk_dept FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+INSERT INTO Departments VALUES
+(1, 'HR', 'New York'),
+(2, 'Finance', 'Chicago'),
+(3, 'IT', 'San Francisco'),
+(4, 'Marketing', 'Boston');
+
+INSERT INTO Employees VALUES
+(101, 'John Doe', 28, 50000, 1, '2020-01-15'),
+(102, 'Jane Smith', 35, 65000, 2, '2018-03-12'),
+(103, 'Emily Davis', 30, 72000, 3, '2019-07-01'),
+(104, 'Michael Brown', 40, 80000, 3, '2015-06-23'),
+(105, 'William Johnson', 25, 40000, 4, '2021-09-10'),
+(106, 'Sophia Lee', 29, 55000, 2, '2020-11-18'),
+(107, 'James Wilson', 38, 90000, 1, '2016-04-14'),
+(108, 'Olivia Taylor', 31, 67000, 4, '2017-08-29');
+
+
+1. Easy Level (20 Questions)
+Focus: INSERT, UPDATE, DELETE basics.
+
+Insert a new employee into the Employees table.
+
+Insert a new department into Departments table.
+
+Insert an employee without specifying all columns (use default values).
+
+Insert multiple employees in a single INSERT statement.
+
+Increase salary of employee with emp_id = 101 by 5000.
+
+Update the location of dept_id = 3 to Seattle.
+
+Change the dept_id of employee William Johnson to 2.
+
+Delete the employee with emp_id = 106.
+
+Delete all employees in department Marketing.
+
+Set the salary of all employees in department HR to 60000.
+
+Update the hire_date of Jane Smith to 2019-01-01.
+
+Insert an employee hired today using CURRENT_DATE.
+
+Delete all employees with salary less than 45000.
+
+Update department name from Finance to Accounts.
+
+Insert a new employee with no dept_id assigned.
+
+Change age of Michael Brown to 41.
+
+Delete a department with no employees.
+
+Insert a new department Research in Austin.
+
+Increase all salaries by 10%.
+
+Delete all employees hired before 2017.
+
+2. Medium Level (20 Questions)
+Focus: Conditional updates, subqueries, transactions.
+
+Increase salary by 5% for employees hired after 2019.
+
+Update department for all employees earning more than 70000 to Finance.
+
+Delete employees whose age is between 30 and 35.
+
+Insert a new employee and assign them to the same department as Olivia Taylor.
+
+Update salary to match the average salary of their department for employees with below-average pay.
+
+Delete all employees who are not assigned to any department.
+
+Transfer all IT department employees to Marketing.
+
+Give a 2000 bonus to employees in the department with the highest average salary.
+
+Delete employees earning less than the company’s average salary.
+
+Update the hire date of employees with the lowest salary to today’s date.
+
+Insert employees using data from another table.
+
+Delete employees whose department is located in Boston.
+
+Update salaries so that the highest-paid employee earns 100000.
+
+Increase salary by 15% for employees in the department with the fewest employees.
+
+Delete the most recently hired employee.
+
+Insert an employee into the department with the same location as Finance.
+
+Update age for employees whose name starts with J to 29.
+
+Delete employees who joined more than 8 years ago.
+
+Give every employee in HR the maximum salary in the company.
+
+Delete all employees in departments that have more than 2 employees.
+
+3. Low-Level Hard (20 Questions)
+Focus: Complex conditions, joins in updates/deletes, transactional control.
+
+Increase salary of employees whose department is in the same city as the highest-paid employee’s department.
+
+Delete employees whose salary is less than the minimum salary in the IT department.
+
+Update salaries so each employee earns the median salary of the company.
+
+Transfer employees from the smallest department to the largest department.
+
+Delete employees whose department’s average salary is less than 50000.
+
+Insert employees by copying all employees from Marketing into Research with a 5% salary hike.
+
+Update salaries so that employees with the same age have the same salary as the highest-paid among them.
+
+Delete all employees except the top 2 highest paid from each department.
+
+Increase salary for employees who earn less than the salary of Jane Smith but more than William Johnson.
+
+Update salaries using a join with a temporary table of new salary values.
+
+Insert an employee in each department whose average age is less than 30.
+
+Delete employees who are the only member of their department.
+
+Update salaries for employees hired in the same year as Michael Brown to be 80000.
+
+Transfer all employees from departments located in cities starting with N to IT.
+
+Delete employees who earn exactly the department’s average salary.
+
+Update salaries for employees in the department with the oldest average hire date to be 90000.
+
+Insert employees from a CSV file into the Employees table.
+
+Delete employees where there’s another employee with the same salary and department.
+
+Update the department of employees earning within 5000 of the max salary to Executive.
+
+Give all employees in the top 50% salary bracket a 20% raise.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ✅ 10 Easy Questions
 ----------------------------
 (1). Fetch all columns from the employees table.
