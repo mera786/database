@@ -24,120 +24,14 @@ ORDER TO PRACTICE BELOW QUESTION SECTION WISE ?
 
 
 
-Step 1 – Master Dataset
-We’ll first create a sample database called CompanyDB with 5–6 interrelated tables so every section can use them.
-
-Tables:
-
-Employees – Basic employee info
-
-Departments – Department info
-
-Projects – Projects info
-
-Salaries – Salary history
-
-Attendance – Attendance records
-
-Clients – Client info (optional for JOIN practice)
-
-
-
-Schema & Sample Data: 
-________________________
-
-CREATE DATABASE CompanyDB;
-USE CompanyDB;
-
-CREATE TABLE Departments (
-    dept_id INT PRIMARY KEY,
-    dept_name VARCHAR(50) NOT NULL,
-    location VARCHAR(50)
-);
-
-INSERT INTO Departments VALUES
-(1, 'HR', 'New York'),
-(2, 'IT', 'San Francisco'),
-(3, 'Finance', 'Chicago'),
-(4, 'Marketing', 'Boston');
-
-CREATE TABLE Employees (
-    emp_id INT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    dept_id INT,
-    hire_date DATE,
-    gender CHAR(1),
-    email VARCHAR(100),
-    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
-);
-
-INSERT INTO Employees VALUES
-(101, 'John', 'Doe', 2, '2019-06-12', 'M', 'john.doe@company.com'),
-(102, 'Jane', 'Smith', 1, '2020-01-15', 'F', 'jane.smith@company.com'),
-(103, 'Mike', 'Brown', 3, '2018-09-23', 'M', 'mike.brown@company.com'),
-(104, 'Sara', 'Wilson', 2, '2021-03-10', 'F', 'sara.wilson@company.com'),
-(105, 'David', 'Lee', 4, '2019-11-30', 'M', 'david.lee@company.com');
-
-CREATE TABLE Salaries (
-    salary_id INT PRIMARY KEY,
-    emp_id INT,
-    amount DECIMAL(10,2),
-    from_date DATE,
-    to_date DATE,
-    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
-);
-
-INSERT INTO Salaries VALUES
-(1, 101, 75000, '2022-01-01', '2022-12-31'),
-(2, 102, 65000, '2022-01-01', '2022-12-31'),
-(3, 103, 80000, '2022-01-01', '2022-12-31'),
-(4, 104, 70000, '2022-01-01', '2022-12-31'),
-(5, 105, 72000, '2022-01-01', '2022-12-31');
-
-CREATE TABLE Projects (
-    project_id INT PRIMARY KEY,
-    project_name VARCHAR(100),
-    dept_id INT,
-    start_date DATE,
-    end_date DATE,
-    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
-);
-
-INSERT INTO Projects VALUES
-(1, 'Website Redesign', 2, '2022-02-01', '2022-06-30'),
-(2, 'Recruitment Drive', 1, '2022-03-01', '2022-04-30'),
-(3, 'Financial Audit', 3, '2022-01-01', '2022-05-31'),
-(4, 'Social Media Campaign', 4, '2022-04-01', '2022-07-31');
-
-CREATE TABLE Attendance (
-    att_id INT PRIMARY KEY,
-    emp_id INT,
-    date DATE,
-    status VARCHAR(10),
-    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
-);
-
-INSERT INTO Attendance VALUES
-(1, 101, '2022-06-01', 'Present'),
-(2, 102, '2022-06-01', 'Absent'),
-(3, 103, '2022-06-01', 'Present'),
-(4, 104, '2022-06-01', 'Present'),
-(5, 105, '2022-06-01', 'Present');
 
 
 
 ************************************************************ SECTIONWISE *************************************************************************************
 
-Section 1: Basics of SQL
-Topics Covered:
-
-What is SQL?
-DBMS vs RDBMS (theory only)
-Tables, Rows, Columns
-SELECT, FROM, WHERE
-
-
+                                                                      1️⃣ Section 1 – Basics of SQL
+                                                                      (SELECT, FROM, WHERE, Tables, Rows, Columns)
+                                                                     ---------------------------------------------------
 
 Schema & Data for Practice :
 
@@ -167,27 +61,30 @@ INSERT INTO Employees (EmpID, FirstName, LastName, Department, Salary, JoinDate)
 
 
 60 Practice Questions  :
+##########################
 
 Easy (20 Qs)
-Select all records from the Employees table.
+______________
 
-Display only FirstName and LastName of all employees.
+(1) Select all records from the Employees table.
 
-Retrieve all employees who work in the IT department.
+(2) Display only FirstName and LastName of all employees.
 
-Show EmpID and Department of all employees.
+(3) Retrieve all employees who work in the IT department.
 
-Get details of the employee whose EmpID is 3.
+(4) Show EmpID and Department of all employees.
 
-Retrieve employees with salary greater than 50,000.
+(5) Get details of the employee whose EmpID is 3.
 
-Show all employees who joined after 2020-01-01.
+(6) Retrieve employees with salary greater than 50,000.
 
-Display the names of employees in the Finance department.
+(7) Show all employees who joined after 2020-01-01.
 
-Retrieve FirstName of all employees, without duplicates.
+(8) Display the names of employees in the Finance department.
 
-Show employees who have salary exactly equal to 48000.
+(9) Retrieve FirstName of all employees, without duplicates.
+
+(10) Show employees who have salary exactly equal to 48000.
 
 Display FirstName and JoinDate of all employees.
 
