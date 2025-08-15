@@ -86,25 +86,35 @@ ______________
 
 (10) Show employees who have salary exactly equal to 48000.
 
-Display FirstName and JoinDate of all employees.
+(11) Display FirstName and JoinDate of all employees.
 
-Show EmpID and Salary for all employees in the HR department.
+(12) Show EmpID and Salary for all employees in the HR department.
 
-Retrieve employees whose department is either IT or Marketing.
+(13) Retrieve employees whose department is either IT or Marketing.
 
-Show all employees whose salary is less than 55,000.
+(14) Show all employees whose salary is less than 55,000.
 
-Display employees who joined in 2021.
+(15) Display employees who joined in 2021.
+Note:
+-> use built-in year() function and passed date column name
 
-Show all employees with EmpID between 3 and 6.
+(16) Show all employees with EmpID between 3 and 6.
+Note:-
+-> use Between + AND
 
-Retrieve the department of employee Olivia White.
+(17) Retrieve the department of employee Olivia White.
+Note:-
+-> use AND
 
-Show only the first 5 rows from the Employees table.
+(18) Show only the first 5 rows from the Employees table.
+Note:-
+-> use order by + limit
 
-Display all employees sorted by FirstName in ascending order.
+(19) Display all employees sorted by FirstName in ascending order.
+Note:-
+-> use order by + asc
 
-Show employees sorted by Salary in descending order.
+(20) Show employees sorted by Salary in descending order.
 
 
 Medium (20 Qs) :
