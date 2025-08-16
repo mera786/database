@@ -117,58 +117,112 @@ Note:-
 (20) Show employees sorted by Salary in descending order.
 
 
+
 Medium (20 Qs) :
+_________________
 
-Show the top 3 highest-paid employees.
+(1) Show the top 3 highest-paid employees.
+Note:-
+-> order by + desc + limit
 
-Retrieve employees whose FirstName starts with ‘J’.
+(2) Retrieve employees whose FirstName starts with ‘J’.
+Note:-
+-> use like operator
 
-Display employees whose last name contains ‘son’.
+(3) Display employees whose last name contains ‘son’.
+Note:-
+-> use like operator
 
-Show employees in departments other than IT.
+(4) Show employees in departments other than IT.
+Note:-
+-> use 'not in' logical operator
 
-Display employees whose salary is between 50,000 and 60,000.
+(5) Display employees whose salary is between 50,000 and 60,000.
+Note:-
+-> use 'between' operator
 
-Show the oldest joining date in the company.
+(6) Show the oldest joining date in the company.
+Note:-
+-> order by + asc + limit
+-> use min() aggregate function
 
-Retrieve the most recently joined employee.
+(7) Retrieve the most recently joined employee.
+Note:-
+-> use max() aggregate function
 
-Show all employees except the one with EmpID 5.
+(8) Show all employees except the one with EmpID 5.
+Note:-
+-> use 'not in' operator
+-> use <> = not equal operator
 
-Display full name (FirstName LastName) of all employees.
+(9) Display full name (FirstName LastName) of all employees.
+Note:-
+-> use 'concat' scaler functions one of these UPPER(), LOWER(), LEN(), ROUND(), CONCAT().
 
-Show employees whose salary is not null.
+(10) Show employees whose salary is not null.
+Note:-
+-> use 'is not null' logical operator
 
-Retrieve employees who joined before 2019.
+(11) Retrieve employees who joined before 2019.
 
-Show employees who joined after 2019-01-01 but earn less than 55,000.
+(12) Show employees who joined after 2019-01-01 but earn less than 55,000.
+Note:-
+-> use 'and' operator
 
-Display the department of each employee without duplicates.
+(13) Display the department of each employee without duplicates.
+Note:-
+-> use 'distinct' keyword/cluse modifier
 
-Show all employees ordered by JoinDate ascending.
+(14) Show all employees ordered by JoinDate ascending.
 
-Retrieve the first 3 employees in the Finance department by join date.
+(15) Retrieve the first 3 employees in the Finance department by join date.
+Note:-
+-> where + order by + asc + limit 3
 
-Display the highest salary in the company.
+(16) Display the highest salary in the company.
+Note:-
+-> use 'max()' aggregate function
 
-Show the lowest salary in the company.
+(17) Show the lowest salary in the company.
+Note:-
+-> use 'min()' aggregate function
 
-Retrieve employees whose FirstName has exactly 5 characters.
+(18) Retrieve employees whose FirstName has exactly 5 characters.
+Note:-
+-> use 'length()' scaler function
 
-Show employees with FirstName ending in ‘a’.
+(19) Show employees with FirstName ending in ‘a’.
+Note:-
+-> use 'like' operator
 
-Retrieve employees in the IT department earning more than 65,000.
+(20) Retrieve employees in the IT department earning more than 65,000.
+Note:-
+-> use 'and' operator
+
 
 
 Low-Hard (20 Qs) :
+____________________
 
-Retrieve the second highest salary from the company.
+(1) Retrieve the second highest salary from the company.
+Note:-
+- OFFSET is keyword, is used along with LIMIT (or FETCH) to skip a certain number of rows
+-> using subquery : use 'max()' + alias (as) + < operator + 'max()';
+-> use  'limit' + 'offset' keywords.
 
-Retrieve the second lowest salary.
+(2) Retrieve the second lowest salary.
+Note:-
+-> using subquery : use 'min()' + alias (as) + > operator + 'min()';
+-> use 'limit' + 'offset' keywords
 
-Display employees whose salary is higher than the average salary.
+(3) Display employees whose salary is higher than the average salary.
+Note:-
+-> subquery : use 'avg()' aggregate function
 
-Show employees who joined in the same year as Michael Wilson.
+(4) Show employees who joined in the same year as Michael Wilson.
+Note:-
+-> subquery : use 'year()' + '=' operator + 'and'
+
 
 Display the number of employees in each department.
 
