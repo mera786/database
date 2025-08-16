@@ -223,18 +223,25 @@ Note:-
 Note:-
 -> subquery : use 'year()' + '=' operator + 'and'
 
+(5) Display the number of employees in each department.
+Note:-
+-> use 'count()' aggregate function + 'group by' keywords
 
-Display the number of employees in each department.
+(6) Retrieve employees who have the same department as Jane Smith.
+Note:-
+-> write subquery
 
-Retrieve employees who have the same department as Jane Smith.
+(7) Show employees with the same salary as David Anderson.
+Note:-
+-> write subquery
 
-Show employees with the same salary as David Anderson.
+(8) Retrieve employees who joined within the last 2 years.
+Note:-
+-> use 'DATE_SUB()' function + 'CURDATE()' + 'INTERVAL 2 YEAR' interval keyword
 
-Retrieve employees who joined within the last 2 years.
-
-Display employees with salaries in the top 30% range.
-
-Show the employee(s) with the longest name in the company.
+(9) Show the employee(s) with the longest name in the company.
+Note:-
+-> length() + concat()+ max()
 
 Retrieve employees whose FirstName and LastName start with the same letter.
 
@@ -258,7 +265,9 @@ Display the employee with the earliest joining date in each department.
 
 
 
-Section 2 – Filtering & Sorting : 
+                                                                             2️⃣ Section 2 – Filtering & Sorting
+                                                                         (WHERE with operators, LIKE, ORDER BY, LIMIT/TOP)
+                                                                     ---------------------------------------------------
 
 📂 Schema for Filtering & Sorting :
 
@@ -307,10 +316,10 @@ INSERT INTO Orders (OrderID, CustomerID, OrderDate, Amount, Status) VALUES
 (110, 10, '2024-05-10', 1000.00, 'Completed');
 
 
-
-🔹 Section 2 – Filtering & Sorting (WHERE, LIKE, BETWEEN, IN, ORDER BY, LIMIT)
 🟢 20 Easy Questions
-Get all customers from USA.
+_________________________
+
+(1) Get all customers from USA.
 
 Show all orders where status is 'Completed'.
 
