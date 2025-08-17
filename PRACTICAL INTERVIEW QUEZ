@@ -321,60 +321,89 @@ _________________________
 
 (1) Get all customers from USA.
 
-Show all orders where status is 'Completed'.
+(2) Show all orders where status is 'Completed'.
 
-Find customers older than 30.
+(3) Find customers older than 30.
 
-Get all orders where amount is greater than 500.
+(4) Get all orders where amount is greater than 500.
 
-List customers whose first name is 'Emma'.
+(5) List customers whose first name is 'Emma'.
 
-Show customers from London or Berlin.
+(6) Show customers from London or Berlin.
+Note:-
+-> use 'in' operator
 
-Find orders placed on '2024-04-01'.
+(7) Find orders placed on '2024-04-01'.
 
-Get all customers whose age is less than 30.
+(8) Get all customers whose age is less than 30.
 
-Show orders with amount exactly 900.00.
+(9) Show orders with amount exactly 900.00.
 
-Find customers from UK using IN clause.
+(10) Find customers from UK using IN clause.
 
-Get orders where amount is between 500 and 1000.
+(11) Get orders where amount is between 500 and 1000.
 
-Show customers where City is not 'Paris'.
+(12) Show customers where City is not 'Paris'.
+Note:-
+-> use '!='   
+-> use ' <> '  not equal operator
+-> use ' not in () ' 
 
-Find orders where status is 'Pending' or 'Cancelled'.
+(13) Find orders where status is 'Pending' or 'Cancelled'.
+Note:-
+-> use 'in' operator
 
-List all customers ordered by Age ascending.
+(14) List all customers ordered by Age ascending.
 
-Show customers ordered by LastName descending.
+(15) Show customers ordered by LastName descending.
 
-Get first 5 customers sorted by CustomerID.
+(16) Get first 5 customers sorted by CustomerID.
 
-Show the youngest customer.
+(17) Show the youngest customer.
+Note:-
+-> order by + asc + limit 1
 
-Find the oldest customer.
+(18) Find the oldest customer.
 
-Show all customers from 'Germany' sorted by FirstName.
+(19) Show all customers from 'Germany' sorted by FirstName.
 
-Get orders sorted by Amount descending.
+(20) Get orders sorted by Amount descending.
+
+
 
 🟡 20 Medium Questions
-Get customers whose first name starts with 'J'.
+__________________________
 
-Find orders where amount is greater than 500 and status is 'Completed'.
+(1) Get customers whose first name starts with 'J'.
+Note:-
+-> use 'like' operator
 
-Show customers whose city is 'New York' and age is less than 30.
+(2) Find orders where amount is greater than 500 and status is 'Completed'.
+Note:-
+-> use 'and' operator
 
-List orders placed in February 2024.
+(3) Show customers whose city is 'New York' and age is less than 30.
+Note:-
+-> use 'and' operator
 
-Get customers whose last name contains 'son'.
+(4) List orders placed in February 2024.
+Note:-
+-> use 'year()' + 'month()' 
+-> use 'between'
 
-Show orders where status is 'Completed' and amount is less than 1000.
+(5) Get customers whose last name contains 'son'.
+Note:-
+-> use 'like' operator
 
-Find customers from either 'USA' or 'Australia' but age greater than 25.
+(6) Show orders where status is 'Completed' and amount is less than 1000.
+Note:-
+-> use 'and'  operator
 
-Get orders where amount is not between 300 and 900.
+(7) Find customers from either 'USA' or 'Australia' but age greater than 25.
+Note:-
+-> use 'where' + 'in' + 'and'
+
+(8) Get orders where amount is not between 300 and 900.
 
 Find customers whose city name has 5 letters.
 
