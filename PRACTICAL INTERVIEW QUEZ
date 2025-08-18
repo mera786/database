@@ -404,41 +404,82 @@ Note:-
 -> use 'where' + 'in' + 'and'
 
 (8) Get orders where amount is not between 300 and 900.
+Note:-
+-> use 'not between'
 
-Find customers whose city name has 5 letters.
+(9) Find customers whose city name has 5 letters.
+Note:-
+-> use 'length()'
 
-Show orders placed after '2024-03-01' but before '2024-05-01'.
+(10) Show orders placed after '2024-03-01' but before '2024-05-01'.
+Note:-
+-> use '>' and '<' operator
+-> use 'between'
 
-Get the top 3 highest order amounts.
+(11) Get the top 3 highest order amounts.
+Note:-
+-> use 'order by' + 'desc' + 'limit'
 
-Find customers whose first name ends with 'a'.
+(12) Find customers whose first name ends with 'a'.
+Note:-
+-> use 'like' operator
 
-Show orders where the status is not 'Completed'.
+(13) Show orders where the status is not 'Completed'.
+Note:-
+-> use '<>' operator
+-> use '!='
+-> use 'not in'
+-> use 'not like'
 
-Get all customers whose age is a multiple of 5.
+(14) Get all customers whose age is a multiple of 5.
+Note:-
+-> use '%' operator
 
-Find customers with first name in the list ('John', 'David', 'Emma').
+(15) Find customers with first name in the list ('John', 'David', 'Emma').
+Note:-
+-> use 'in' operator
 
-Show orders sorted first by status, then by amount descending.
+(16) Show orders sorted first by status ascending, then by amount descending.
+Note:-
+-> use 'order by' + 'asc' + 'desc' seperating with comma
 
-Get the second highest order amount.
+(17) Get the second highest order amount.
+Note:-
+-> use 'order by ' + desc + limit + offset
 
-Show the two youngest customers from 'USA'.
+(18) Show the two youngest customers from 'USA'.
+Note:-
+-> use 'where' + 'order by' + 'asc' + 'limit'
 
-Find customers not from 'UK' and not from 'France'.
+(19) Find customers not from 'UK' and not from 'France'.
+Note:-
+-> use 'not in()'
 
-Get orders where day of the order date is greater than 10.
+(20) Get orders where day of the order date is greater than 10.
+Note:-
+-> use 'day()' function
+
 
 🔴 20 Low-Hard Questions
-Get customers whose first name length is more than 5 characters.
+_____________________________
 
-Find orders where amount is greater than average order amount.
+(1) Get customers whose first name length is more than 5 characters.
+Note:-
+-> use 'length()'
 
-Show customers who have placed more than 1 order.
+(2) Find orders where amount is greater than average order amount.
+Note:-
+-> use 'subquery with 'avg()' function
 
-Get customers who have never placed an order.
+(3) Show customers who have placed more than 1 order.
+Note:-
+-> use 'group by' + 'having'
 
-Find the top 3 oldest customers from 'USA'.
+(4) Get customers who have never placed an order.
+Note:-
+-> use 'not in()'
+
+(5) Find the top 3 oldest customers from 'USA'.
 
 Show orders from customers living in 'Berlin' or 'Paris', amount greater than 500.
 
