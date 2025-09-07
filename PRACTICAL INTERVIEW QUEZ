@@ -243,9 +243,13 @@ Note:-
 Note:-
 -> length() + concat()+ max()
 
-Retrieve employees whose FirstName and LastName start with the same letter.
+(10) Retrieve employees whose FirstName and LastName start with the same letter. ?
+Note:-
+-> use substring() Scalar Function.
 
-Show employees in departments with more than 2 members.
+(11) Show employees in departments with more than 2 members. ?
+Note:-
+-> use GROUP BY + HAVING.
 
 Display employees who joined on a Monday.
 
