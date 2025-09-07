@@ -64,6 +64,7 @@ Joins is used to combine rows from two or more tables , based on a related colum
 (b) Left Join
 (c) Right Join
 (d) Full join / Outer Join
+(e) Self Join
 
 
 -> (a) Inner Join:
@@ -278,5 +279,32 @@ you can save that specific query as a stored procedure and call it just by it's 
 | **Can Contain Logic?**  | ✅ Yes (can use `IF`, `LOOP`, `CASE`, etc.)             | ❌ No logic; only a single `SELECT` query                    |
 | **Can Modify Data?**    | ✅ Yes (can perform `INSERT`, `UPDATE`, `DELETE`, etc.) | ❌ Generally no; mostly used to display data                 |
 | **Used For**            | Reusable complex operations or business logic          | Simplifying complex queries; showing data in a specific way |
+
+(34) WHAT is Function ?
+A function in SQL takes input (optional), performs an operation, and returns a single value. It can be either built-in or user-defined.
+like, 
+Built-in SQL Functions :
+--------------------------
+Aggregate Functions → work on multiple rows, return a single result like COUNT(), SUM(), AVG(), MAX(), MIN().
+Scalar Functions → work on each row individually like, UPPER(), LOWER(), LENGTH(), ROUND(), NOW().
+
+User-Defined Functions :
+--------------------------
+These are custom functions that you create to encapsulate logic and reuse it, They can take input parameters, process them, and return a value.
+
+SYNTAX :
+---------
+CREATE FUNCTION getFullName(fname VARCHAR(50), lname VARCHAR(50))
+RETURNS VARCHAR(100)
+DETERMINISTIC
+BEGIN
+   RETURN CONCAT(fname, ' ', lname);
+END;
+
+USAGE : 
+SELECT getFullName('John', 'Doe');
+-- Output: John Doe
+
+
 
 
