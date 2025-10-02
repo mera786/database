@@ -1,46 +1,120 @@
-                                   SQL QUEZ
-
-(1) what database types refers & tell Database Types ?
-(2) Difference Between SQL and No-SQL?
-(3) What Database Management Systems (DBMS) refers & tell DBMS types?
-(4) Difference between DBMS and RDBMS ?
-(5) What is View ?
-(6) What are Sub Queries ?
-(7) what is Union ?
-(8) What are Joins & EXPLAIN Each-one JOINS ?
-(9) Explain  general order of SQL clauses in a SELECT query?
-(10) What are Aggregate Functions?
-(11) What are SQL operators? Describe their types ?
-(12) EXPLAIN AND , OR, BETWEEN, IN, NOT Operators ?
-(13) What is a clause in SQL and why is it used , Tell names of Cluse?
-(14) Explain Where Cluse?
-(15) Explain having cluse?
-(16) Explain Group By Cluse?
-(17) Explain Order By Cluse?
-(18) Explain Limit Cluse ?
-(19) What is a constraint in SQL, Explain Types of Constraints in SQL?
-(20) Explain Difference between Primary key and Forein key ?
-(21) What are SQL commands and what are their types ?
-(22) What are the different data types supported in SQL?
-(23) WHAT IS NORMALIZATION?
-(24) Explain types of Normalization ?
-(25) What are transaction control statements?
-(26) What is ACID Properties ?
-(27) Explain Each ACID Properties & How do BEGIN, COMMIT, and ROLLBACK help a database work with ACID properties?
-(28) DIFFERENCE BETWEEN DROP, DELETE AND TRUNCATE?
-(29) DIFFERENCE BETWEEN DDL VS DML?
-(30) EXPLAIN SQL VS P/SQL?
-(31) WHAT IS SQL INJECTION?
-(32) What is Stored Procedure?
-(33) Difference between Stored Procedure and View?
-
----------------------------------------------------------- CHATGPT QUESTION ----------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
+(1) Basics of SQL :
+--------------------
+          Q1. What is SQL?
+          Q2. Difference between SQL and MySQL?
+          Q3. What are different types of SQL statements (DDL, DML, DCL, TCL)?
+          Q4. What is a database?
+          Q5. What is a table in SQL?
+          Q6. What is the difference between schema and database?
+          Q7. What are constraints in SQL?
+          Q8. What is NULL value in SQL?
+          Q9. What is the difference between CHAR and VARCHAR?
+          Q10. Difference between DELETE, TRUNCATE, and DROP?
+(2) Constraints in SQL :
+---------------------------
+          Q1. What is a Primary Key?
+          Q2. What is a Unique Key?
+          Q3. Difference between Primary Key vs Unique Key?
+          Q4. What is a Foreign Key?
+          Q5. Difference between Primary Key vs Foreign Key?
+          Q6. What is NOT NULL constraint?
+          Q7. What is DEFAULT constraint?
+          Q8. What is CHECK constraint?
+          Q9. What are composite keys?
+          Q10. Can a table have multiple primary keys?
+(3) SQL Joins :
+-----------------
+          Q1. What are Joins in SQL?
+          Q2. Explain INNER JOIN with example.
+          Q3. Explain LEFT JOIN with example.
+          Q4. Explain RIGHT JOIN with example.
+          Q5. Explain FULL OUTER JOIN with example.
+          Q6. Difference between INNER JOIN and OUTER JOIN?
+          Q7. What is SELF JOIN?
+          Q8. Difference between JOIN and UNION?
+          Q9. What is CROSS JOIN?
+          Q10. Difference between UNION vs UNION ALL?
+(4) SQL Statements & Queries :
+--------------------------------
+          Q1. Difference between WHERE and HAVING?
+          Q2. Difference between GROUP BY and ORDER BY?
+          Q3. How do you fetch unique records in SQL?
+          Q4. How to find the second highest salary in SQL?
+          Q5. How to find duplicate rows in SQL?
+          Q6. How to delete duplicate rows in SQL?
+          Q7. What is a subquery?
+          Q8. Difference between Correlated vs Non-Correlated subquery?
+          Q9. How to select first 5 records from a table?
+          Q10. Difference between EXISTS and IN?
+(5) Indexes & Keys :
+---------------------
+          Q1. What is an Index in SQL?
+          Q2. Difference between Clustered and Non-Clustered Index?
+          Q3. Can we create multiple clustered indexes in a table?
+          Q4. What are composite indexes?
+          Q5. When should you avoid indexes?
+          Q6. What is the difference between Primary Key and Index?
+          Q7. What is covering index?
+          Q8. How do indexes affect performance?
+          Q9. What is a unique index?
+          Q10. How do you drop an index in SQL?
+(6) Views & Stored Procedures :
+--------------------------------
+          Q1. What is a View in SQL?
+          Q2. What are the advantages of using views?
+          Q3. Difference between View and Table?
+          Q4. Can we insert/update data using a View?
+          Q5. What is a Stored Procedure?
+          Q6. What are the benefits of stored procedures?
+          Q7. Difference between Function and Stored Procedure?
+          Q8. What is a Trigger?
+          Q9. Difference between Trigger and Stored Procedure?
+          Q10. What are Cursors in SQL?
+(7) Transactions & Locks :
+---------------------------
+          Q1. What is a Transaction in SQL?
+          Q2. What are ACID properties?
+          Q3. Difference between COMMIT and ROLLBACK?
+          Q4. What is SAVEPOINT in SQL?
+          Q5. What is a Deadlock in SQL?
+          Q6. What is Transaction Isolation Level?
+          Q7. Difference between Optimistic vs Pessimistic Locking?
+          Q8. What is Phantom Read, Dirty Read, Non-Repeatable Read?
+          Q9. How do you handle transactions in MySQL?
+          Q10. Which isolation level is default in MySQL?
+(8) Functions & Operators :
+------------------------------
+          Q1. What are Aggregate Functions in SQL? (COUNT, SUM, AVG, MAX, MIN)
+          Q2. What are Scalar Functions in SQL?
+          Q3. Difference between NVL, ISNULL, COALESCE?
+          Q4. What are String Functions in SQL? (UPPER, LOWER, SUBSTR, CONCAT, etc.)
+          Q5. What are Date Functions in SQL? (NOW, CURDATE, DATEADD, DATEDIFF, etc.)
+          Q6. Difference between ROUND(), CEIL(), FLOOR()?
+          Q7. What is CASE WHEN in SQL?
+          Q8. What are Window Functions in SQL?
+          Q9. Difference between ROW_NUMBER(), RANK(), and DENSE_RANK()?
+          Q10. What is the difference between COUNT(*) vs COUNT(column_name)?
+(9) Normalization & Design :
+------------------------------
+          Q1. What is Normalization?
+          Q2. What are different Normal Forms (1NF, 2NF, 3NF, BCNF)?
+          Q3. What is Denormalization?
+          Q4. Difference between Normalization vs Denormalization?
+          Q5. What is E-R Diagram?
+          Q6. What are Cardinalities in ER model?
+          Q7. What is Surrogate Key?
+          Q8. What is Composite Key?
+          Q9. What is Referential Integrity?
+          Q10. What is Data Redundancy?
+(10) Advanced / Performance :
+-------------------------------
+          Q1. How do you optimize SQL queries?
+          Q2. Why should we avoid SELECT * ?
+          Q3. What is an Execution Plan?
+          Q4. Difference between OLTP vs OLAP?
+          Q5. What is Partitioning in MySQL?
+          Q6. Difference between Horizontal vs Vertical Partitioning?
+          Q7. What is Sharding in databases?
+          Q8. How does indexing help in performance tuning?
+          Q9. What is a Covering Index?
+          Q10. How do you find slow queries in MySQL?
