@@ -2,26 +2,21 @@
 --------------------
           Q1. What is SQL?
           Q2. Difference between SQL and MySQL?
-          Q3. What are different types of SQL statements (DDL, DML, DCL, TCL)?
+          Q3. Can you name the different categories of SQL statements?
           Q4. What is a database?
-          Q5. What is a table in SQL?
-          Q6. What is the difference between schema and database?
-          Q7. What are constraints in SQL?
-          Q8. What is NULL value in SQL?
-          Q9. What is the difference between CHAR and VARCHAR?
-          Q10. Difference between DELETE, TRUNCATE, and DROP?
+          Q5. Difference Between SQL and NoSQL ?
+          Q6. What is a table in SQL?
+          Q7. What is the difference between schema and database?
+          Q8. What are constraints in SQL?
+          Q9. What is NULL value in SQL?
+          Q10. What is the difference between CHAR and VARCHAR?
+          Q11. Difference between DELETE, TRUNCATE, and DROP?
 (2) Constraints in SQL :
 ---------------------------
-          Q1. What is a Primary Key?
-          Q2. What is a Unique Key?
-          Q3. Difference between Primary Key vs Unique Key?
-          Q4. What is a Foreign Key?
-          Q5. Difference between Primary Key vs Foreign Key?
-          Q6. What is NOT NULL constraint?
-          Q7. What is DEFAULT constraint?
-          Q8. What is CHECK constraint?
-          Q9. What are composite keys?
-          Q10. Can a table have multiple primary keys?
+          Q1. Difference between Primary Key vs Unique Key?
+          Q2. Difference between Primary Key vs Foreign Key?
+          Q3. What are composite keys?
+          Q4. Can a table have multiple primary keys?
 (3) SQL Joins :
 -----------------
           Q1. What are Joins in SQL?
