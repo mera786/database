@@ -241,6 +241,84 @@ There are multiple ways, but the most common ones are:
     - Inner query finds the highest salary
     - Outer query finds the maximum salary less than the highest → second highest
 
+Q5. How to find duplicate rows in SQL?
+To find duplicates, we use GROUP BY on the column(s) we want to check, and then use HAVING COUNT(*) > 1. This tells us which value(s) appear more than once.
+
+Q6. How to delete duplicate rows in SQL?
+In MySQL, use DELETE with a self JOIN on duplicate columns, keeping the row with the smallest id.
+eg- DELETE s1 FROM Students s1 INNER JOIN Students s2 WHERE s1.id > s2.id AND s1.name = s2.name AND s1.city = s2.city;
+
+Q7. What is a subquery?
+A subquery is a query inside another query. It is used to pass data from one query to another.Also called a nested query.
+
+Q8. Difference between Correlated vs Non-Correlated subquery?
+Non-Correlated Subquery:
+   - Can run independently.
+   - The inner query does not depend on the outer query.
+   - Result is used by the outer query.
+   - Example: SELECT name, marks FROM Students WHERE marks > (SELECT AVG(marks) FROM Students);
+Correlated Subquery:
+   - Depends on the outer query for its values.
+   - Inner query is executed for each row of the outer query.
+   - Slower than non-correlated.
+   - Example : SELECT s1.name, s1.marks FROM Students s1 WHERE s1.marks > (SELECT AVG(s2.marks) FROM Students s2 WHERE s1.city = s2.city);
+
+Q9. How to select first 5 records from a table?
+Using LIMIT keyword: SELECT * FROM Employees LIMIT 5;
+
+Q10. Difference between EXISTS and IN?
+IN :
+   - Compares a value with a list of values (from a subquery or hard-coded list).
+   - Good when the subquery returns a small set of values.
+   - The subquery is executed first and then compared.
+   - Example: SELECT name FROM Students WHERE city IN (SELECT city FROM Teachers);
+EXISTS :
+   - Checks if the subquery returns at least one row.
+   - Faster for large datasets because it stops searching as soon as it finds a match.
+   - The subquery is executed for each row of the outer query.
+   - Example: SELECT name FROM Students s WHERE EXISTS (SELECT 1 FROM Teachers t WHERE t.city = s.city);
+
+
+
+
+
+
+(5) Indexes & Keys :
+---------------------
+
+Q1. What is an Index in SQL?
+👉 An Index in SQL is like an index in a book. In SQL → instead of scanning the whole table, the database uses the index to quickly find rows.
+Example : 
+Before Index : searching name 
+SELECT * FROM Employees WHERE name = 'John';
+Doing Indexing : on the name 
+-- Creating an index on 'name' column
+CREATE INDEX idx_employee_name ON Employees(name);
+After Index : searching name
+SELECT * FROM Employees WHERE name = 'John';
+Note:- The query is exactly the same, But now the database uses the index internally to directly jump to rows where name = 'John'.
+
+
+Q2. Difference between Clustered and Non-Clustered Index?
+Clustered Index :
+      - Stores the actual data rows in sorted order (based on the indexed column).
+      - There can be only ONE clustered index per table (because data rows can be physically sorted in only one way).
+      - Faster for range queries (e.g., finding values between 100–200).
+      - Example: CREATE CLUSTERED INDEX idx_emp_id ON Employees(EmployeeID);
+Non-Clustered Index :
+      - Does not change the actual table order.
+      - Creates a separate structure (like a book’s index page) that stores the indexed column + pointer to the real data row.
+      - A table can have multiple non-clustered indexes.
+      - Faster for searching specific values.
+      - Example: CREATE INDEX idx_emp_name ON Employees(Name);
+Note:- 👉 By default, the Primary Key creates a Clustered Index (if no clustered index exists already).
+
+
+
+
+
+
+
 
 
 
