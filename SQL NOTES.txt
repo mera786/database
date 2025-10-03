@@ -1,43 +1,275 @@
+(1) Basics of SQL :
+--------------------
 
-(1) what database types refers & tell Database Types ?
-types of databases tells how data is stored, managed, and queried.
+Q1. What is SQL?
+ - SQL stands for Structured Query Language.
+ - It is like a language to talk with databases.
+ - Just like we use English or Hindi to communicate with people, we use SQL to communicate with databases – to ask for data, add new data, change data, or         delete data.  
 
-**Database Types**:
-SQL databases (Relational)
-NoSQL databases (Non-relational)
+Q2. Difference between SQL and MySQL?
+SQL (Structured Query Language):
+ - SQL is just a language used to talk with databases.
+ - It provides commands like SELECT, INSERT, UPDATE, DELETE.
+ - Think of it like English grammar – rules you use to form sentences.
+MySQL:
+ - MySQL is a database software (RDBMS) that understands SQL language.
+ - It stores data in tables and lets you use SQL to manage that data.
+ - Think of it like a library system where you keep books (data) and ask queries using SQL.
 
-(2) Difference Between SQL and No-SQL?
+Q3. Can you name the different categories of SQL statements?
+SQL commands are categorized into 5 types: DDL, DML, DQL, DCL, TCL.
+1. DDL – Data Definition Language : 
+Purpose: DDL me wo commands ati hai jo kewal or kewal table or database ke structure ki bat karti hai , record ki bat nhi krti hai / Define or modify database structure.
+Commands: CREATE, ALTER, DROP, TRUNCATE, RENAME
+2. DML – Data Manipulation Language
+Purpose: Work with the data/record inside tables.
+Commands: INSERT, UPDATE, DELETE, MERGE
+3. DQL – Data Query Language 
+Purpose: Retrieve data from database.
+Command: SELECT
+4. DCL – Data Control Language
+Purpose: Control access and permissions.
+Commands: GRANT:- jaise insert k liye prevelage dena hai ya nhi, REVOKE: agr kisi moment pe un previlege ko wapis/rollback krna hai to revoke ka use krte hai
+5. TCL – Transaction Control Language
+Purpose: Manage transactions (group of operations).
+Commands: COMMIT, ROLLBACK, SAVEPOINT
 
-| Feature / Criteria    | **SQL (Relational Database)**                                    | **NoSQL (Non-relational Database)**                              |
-| --------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Nature                | Structured, relational                                           | Unstructured, non-relational                                     |
-| Schema                | Fixed schema                                                     | Dynamic schema                                                   |
-| Data Format           | Table-based (rows & columns)                                     | Document, key-value, column, or graph-based                      |
-| Query Language        | SQL                                                              | Various (e.g., JSON queries, CQL, etc.)                          |
-| Use Case              | Complex queries, transactional systems                           | Big Data, real-time apps, flexible schema needs                  |
-| ACID / CAP Compliance | Follows **ACID** (Atomicity, Consistency, Isolation, Durability) | Follows **CAP** (Consistency, Availability, Partition Tolerance) |
-| Best For              | Structured data, joins, consistency                              | Scalability, flexibility, hierarchical/semi-structured data      |
-| Examples              | MySQL, PostgreSQL, Oracle, SQL Server                            | MongoDB, Cassandra, HBase, Neo4j                                 |
+Q4. What is a database & types of databases?
+ - A database is like a digital storage box where we keep data in an organized way so we can easily store, search, update, and delete it whenever needed.
+ - Types of Databases :
+      there are many, few of them are :
+      - SQL databases (RDBMS)
+      - NoSQL Database (Non-relational)
+      - Hierarchical Database : Data is stored in a tree-like structure.
+
+Q5. Difference Between SQL and NoSQL ?
+| Feature            | SQL (Relational DB)                       | NoSQL (Non-Relational DB)                                      
+| ----------| ---------------------------------------------------| --------------------------------------------------------                                     | Meaning   | Uses → tables (rows & columns) to store data.      | Stores data in different formats (documents, key-value pairs,graphs, etc.).            
+| Structure | Structured → fixed schema (predefined columns).    | Flexible → schema-less (you can add new fields anytime).   
+| Best For  | Data with relationships (student records, e-commerce orders) | Data that changes frequently or is unstructured (social media posts,JSON data).
+| Scalability| Vertical scaling (increase CPU/RAM of one server) | Horizontal scaling (add more servers easily).  
+| Query Language | Uses SQL (e.g., `SELECT * FROM Students`).    | Uses different query methods (e.g., JSON queries in MongoDB).  
+| Examples       | MySQL, PostgreSQL, Oracle, SQL Server.        | MongoDB, Cassandra, Redis, Neo4j. 
 
 
-(3) What Database Management Systems (DBMS) refers & tell DBMS types?
-DBMS refers to software systems that manage databases. it tells how they operate and their characteristics.
+Q6. What is a table in SQL?
+A table in SQL is like an Excel sheet where data is stored in rows and columns. where
+ - Columns = fields (like name, age, email).
+ - Rows = records (actual data for each person/item).
 
-** DBMS Types **:
-DBMS (general, can be file-based or non-relational)
-RDBMS (specialized type of DBMS with SQL support)
+ Q7. What is the difference between schema and database?
+Database :
+  - Definition :- A database is like a container that stores all your data in an organized way.
+  - Think of it as :- a house
+  - Contains :- Multiple schemas, tables, views, procedures, etc. 
+  - Focus :- Stores the actual data. 
+  - Example :- Database name: `SchoolDB`
+Schema :
+  - Definition :- A schema is the blueprint/structure inside a database,that defines how data is organized (tables, columns,relationships).  
+  - Think of it as :- The floor plan of the house 
+  - Contains :- Definitions of tables, columns, data types, relationships.
+  - Focus :- Defines the structure of data.  
+  - Example :- Schema inside `SchoolDB`: `Students(id, name, age)` 
 
-(4) Difference between DBMS and RDBMS ?
+Q8. What are constraints in SQL?
+Constraints in SQL are rules applied on table columns to make sure the data is correct, valid, and reliable.
+Types of Constraints :
+    - NOT NULL → Ensures a column cannot have empty (NULL) values.
+    - UNIQUE → Ensures all values in a column are different.
+    - PRIMARY KEY → Uniquely identifies each row (combination of NOT NULL + UNIQUE).
+    - FOREIGN KEY → Links one table’s column to another table’s primary key (creates relationship).
+    - CHECK → Ensures values meet a condition.
+    - DEFAULT → Provides a default value if none is given.
+    - INDEX (not always grouped with constraints, but often mentioned) → Speeds up searching in a table.
 
-| Feature / Criteria   | **DBMS**                         | **RDBMS**                                         |
-| -------------------- | -------------------------------- | ------------------------------------------------- |
-| Data Storage         | File-based                       | Table-based (rows and columns)                    |
-| Schema               | May not support relational model | Uses relational schema                            |
-| Normalization        | Not supported                    | Fully supports normalization                      |
-| Data Volume Handling | Small datasets                   | Large datasets                                    |
-| User Support         | Single-user                      | Multi-user                                        |
-| Data Relationship    | Hierarchical / flat              | Supports relations through primary & foreign keys |
-| Examples             | Microsoft Access, IMS, IDS       | MySQL, Oracle, PostgreSQL, SQL Server             |
+Q9. What is NULL value in SQL?
+In SQL, NULL means no value / unknown value / missing value. It is not 0, it is not an empty string '', it simply means nothing is stored in that column.
+NULL can be stored in any data type (string, number, date, etc.).
+
+Q10. What is the difference between CHAR and VARCHAR?
+CHAR :
+  - Meaning :- Fixed-length string.
+  - Example :- CHAR(5) → "Cat" stored as "Cat " (2 extra spaces).
+  - When to use:- Best for fixed-size data (e.g., country code "IND", gender "M/F").
+VARCHAR:
+  - Meaning:- Variable-length string.
+  - Example:- VARCHAR(5) → "Cat" stored as "Cat" (no extra space).
+  - When to use:- Best for variable-size data (e.g., names, emails, addresses).
+
+Q11. Difference between DELETE, TRUNCATE, and DROP?
+| Feature  | **DELETE**                                    | **TRUNCATE**                              | **DROP**                                     |
+| ---------| ----------------------------------------------| ------------------------------------------| ---------------------------------------------|
+| Purpose  | Remove specific rows from a table.            | Remove all rows from a table.             | Remove **entire table** (structure + data).  |
+| yntax    | `DELETE FROM table_name WHERE condition;`     | `TRUNCATE TABLE table_name;`              | `DROP TABLE table_name;`                     |
+| Condition| Can use WHERE clause to delete specific rows. | Cannot use WHERE clause; deletes all rows.| N/A (table is removed completely).           |
+
+
+
+
+(2) Constraints in SQL :
+---------------------------
+
+ Q1. Difference between Primary Key vs Unique Key?
+   - Primary Key = main unique identifier, cannot be NULL, only one per table.
+   - Unique Key = ensures uniqueness, can be NULL, multiple per table.
+
+Q2. Difference between Primary Key vs Foreign Key?
+Primary key :=
+-> it is a column in a table that uniquely identifies each row.
+-> there is only 1 PK & it should not null.
+FOREIGN KEY :=
+-> a foreign key is a column in a table that refers to the primary key in another table. 
+-> there can be multiple FKs
+-> FKs can have duplicates & null values.
+
+Q3. What are composite keys?
+A composite key is a primary key made up of two or more columns in a table.
+eg- Imagine a school class:
+         - Columns: class_id, student_id
+         - student_id alone may repeat in different classes.
+         - class_id + student_id together is unique.
+
+Q4. Can a table have multiple primary keys?
+No, a table cannot have multiple primary keys.
+   - A table can have only one primary key.
+   - But that primary key can be made up of multiple columns (this is called a composite key).
+
+
+
+
+(3) SQL Joins :
+-----------------
+
+Q1. What are Joins in SQL?
+A join in SQL is used to combine rows from two or more tables based on a related column between them. It helps you get data from multiple tables in a single query.
+
+Q2. Explain INNER JOIN ?
+An INNER JOIN returns only the rows that have matching values in both tables.If a row in one table does not have a match in the other table, it will not appear in the result.
+
+Q3. Explain LEFT JOIN ?
+A LEFT JOIN returns all rows from the left table, and the matching rows from the right table.If there is no match in the right table, it will return NULL for the right table’s columns.
+
+ Q4. Explain RIGHT JOIN ?
+A RIGHT JOIN returns all rows from the right table, and the matching rows from the left table. If there is no match in the left table, it will return NULL for the left table’s columns.
+
+Q5. Explain FULL OUTER JOIN ?
+A FULL OUTER JOIN returns all rows from both tables. If there is a match, it combines the rows. If there is no match in one table, it will return NULL for the missing side.
+
+Q6. Difference between INNER JOIN and OUTER JOIN?
+INNER JOIN → Returns only rows that have matching values in both tables.
+                    - Rows without a match are ignored.
+                    - Example: Only students who have marks.
+OUTER JOIN → Returns all rows from one or both tables, including unmatched rows with NULLs.
+                    - Types: LEFT, RIGHT, FULL
+                    - Example: All students and all marks, even if some students have no marks or some marks have no students.
+
+Q7. What is SELF JOIN?
+A SELF JOIN is when a table is joined with itself.
+    - It allows you to compare rows within the same table.
+    - You must use aliases to tell the difference between the two copies of the table.
+
+Q8. Difference between JOIN and UNION?
+JOIN:
+   - Combines columns from two or more tables based on a related column.
+   - Returns single row with data from multiple tables.
+   - Example: Get student name and their marks from two tables.
+UNION:
+   - Combines rows from two or more tables with the same number of columns and compatible data types.
+   - Returns all rows from both tables stacked vertically.
+   - Example: Get all students from Class A and Class B into one list.
+
+Q9. What is CROSS JOIN?
+A CROSS JOIN returns the all possible combinations product of two tables.
+   - It combines every row from the first table with every row from the second table.
+   - Usually used when you want all possible combinations of rows.
+eg -
+QUERY :>  SELECT T.color, S.size FROM TShirt T CROSS JOIN Size S;
+RESULT:
+| color | size |
+| ----- | ---- |
+| Red   | S    |
+| Red   | M    |
+| Blue  | S    |
+| Blue  | M    |
+
+Q10. Difference between UNION vs UNION ALL?
+UNION:
+  - Combines rows from two or more tables vertically.
+  - Removes duplicate rows automatically.
+  - Example: Get all students from Class A and Class B, but each student appears only once.
+UNION ALL:
+  - Combines rows from two or more tables vertically.
+  - Keeps all duplicates.
+  - Example: Get all students from Class A and Class B, including duplicates if a student is in both classes.
+
+
+
+
+
+(4) SQL Statements & Queries :
+--------------------------------
+
+Q1. Difference between WHERE and HAVING?
+WHERE:
+   - Filters rows before any grouping (like GROUP BY).
+   - Works on individual rows in a table.
+   - Cannot be used with aggregate functions directly (like SUM, COUNT).
+HAVING:
+   - Filters rows after grouping (after GROUP BY).
+   - Works on aggregated data (like total, count, average).
+   - Used to filter grouped results.
+
+Q2. Difference between GROUP BY and ORDER BY?
+GROUP BY:
+    - Groups rows that have the same values in specified columns.
+    - Often used with aggregate functions like SUM, COUNT, AVG.
+    - Purpose: to summarize data.
+ORDER BY:
+    - Sorts rows in a specific order (ascending ASC or descending DESC).
+    - Can sort any column, aggregated or not.
+    - Purpose: to arrange data neatly.
+
+Q3. How do you fetch unique records in SQL?
+To get only unique (distinct) records from a table, we use the DISTINCT keyword. It removes duplicate rows from the result.
+
+ Q4. How to find the second highest salary in SQL?
+There are multiple ways, but the most common ones are:
+   a. Using LIMIT and ORDER BY
+    - ORDER BY salary DESC 
+    - LIMIT 1 OFFSET 1
+  b. Using MAX() and WHERE :
+    - Inner query finds the highest salary
+    - Outer query finds the maximum salary less than the highest → second highest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 (5) What is View ?
 A View is a virtual Table based on the result-set of an SQL statement .
@@ -53,29 +285,6 @@ to use it: -> every SELECT should have same no.of columns.
            -> columns must have similar data types.
            -> columns in every SELECT should be in same order. 
 
-(8) What are Joins & EXPLAIN Each-one JOINS ?
-Joins is used to combine rows from two or more tables , based on a related column between them.
-
-** Types of Joins ** :
-(a) Inner Join
-(b) Left Join
-(c) Right Join
-(d) Full join / Outer Join
-(e) Self Join
-
-
--> (a) Inner Join:
-return records that have matching values in both tables.
-
--> (b) Left Join :
-return all records from the left table, and the matched records from the right table.
-
--> (c) Right Join:
-return all records from the right table, and the matched records from the left table. 
-
--> (d) Full join / Outer Join :
-return all records when there is a match in Either left or right table 
-left join UNION right join 
 
 
 (9) Explain  general order of SQL clauses in a SELECT query?
@@ -137,47 +346,11 @@ to sort in ascending or descending order.
 (18) Explain Limit Cluse ?
 Sets an Upper Limit on a number of rows to be returned.
 
-(19) What is a constraint in SQL, Explain Types of Constraints in SQL?
-A constraint in SQL is a rule applied to a column or a table to ensure data integrity, accuracy, and consistency.
-
-| Constraint    | Description                                                            |
-| ------------- | ---------------------------------------------------------------------- |
-| `NOT NULL`    | Ensures the column cannot have a NULL value                            |
-| `UNIQUE`      | Ensures all values in the column are unique                            |
-| `PRIMARY KEY` | Uniquely identifies each row (combines NOT NULL + UNIQUE)              |
-| `FOREIGN KEY` | Ensures values in a column match values in another table’s primary key |
-| `CHECK`       | Ensures values meet a specific condition (e.g., age > 18)              |
-| `DEFAULT`     | Sets a default value if no value is provided during insertion          |
-
-(20) Explain Difference between PRIMARY KEY and FOREIGN KEY ?
-
-Primary key :=
--> it is a column in a table that uniquely identifies each row.
--> there is only 1 PK & it should not null.
-
-FOREIGN KEY :=
--> a foreign key is a column in a table that refers to the primary key in another table. 
--> there can be multiple FKs
--> FKs can have duplicates & null values.
 
 
-(21) What are SQL commands and what are their types ?
-SQL commands are instructions given to the database to perform specific tasks such as creating tables, inserting data, updating records, and more.
 
-Types of SQL Commands:
 
-| Type    | Full Form                    | Purpose / Examples                                                 |
-| ------- | ---------------------------- | ------------------------------------------------------------------ |
-| **DDL** | Data Definition Language     | Defines or modifies structure of database objects (tables, schema) |
-|         |                              | Commands: `CREATE`, `ALTER`, `DROP`, `TRUNCATE`                    |
-| **DML** | Data Manipulation Language   | Deals with **data inside tables**                                  |
-|         |                              | Commands: `INSERT`, `UPDATE`, `DELETE`                             |
-| **DQL** | Data Query Language          | Retrieves data from the database                                   |
-|         |                              | Command: `SELECT`                                                  |
-| **DCL** | Data Control Language        | Controls **access and permissions**                                |
-|         |                              | Commands: `GRANT`, `REVOKE`                                        |
-| **TCL** | Transaction Control Language | Manages **transactions**                                           |
-|         |                              | Commands: `COMMIT`, `ROLLBACK`, `SAVEPOINT`                        |
+
 
 
 (22) What are the different data types supported in SQL?
