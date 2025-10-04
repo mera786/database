@@ -50,9 +50,8 @@
           Q5. When should you avoid indexes?
           Q6. What is the difference between Primary Key and Index?
           Q7. What is covering index?
-          Q8. How do indexes affect performance?
-          Q9. What is a unique index?
-          Q10. How do you drop an index in SQL?
+          Q8. What is a unique index?
+          Q9. How do you drop an index in SQL?
 (6) Views & Stored Procedures :
 --------------------------------
           Q1. What is a View in SQL?
@@ -69,14 +68,12 @@
 ---------------------------
           Q1. What is a Transaction in SQL?
           Q2. What are ACID properties?
-          Q3. Difference between COMMIT and ROLLBACK?
-          Q4. What is SAVEPOINT in SQL?
-          Q5. What is a Deadlock in SQL?
-          Q6. What is Transaction Isolation Level?
+          Q3. What are transaction control statements?
+          Q4. Difference between COMMIT and ROLLBACK?
+          Q5. What is SAVEPOINT in SQL?
+          Q6. What is a Deadlock in SQL?
           Q7. Difference between Optimistic vs Pessimistic Locking?
-          Q8. What is Phantom Read, Dirty Read, Non-Repeatable Read?
-          Q9. How do you handle transactions in MySQL?
-          Q10. Which isolation level is default in MySQL?
+          Q8. How do you handle transactions in MySQL?
 (8) Functions & Operators :
 ------------------------------
           Q1. What are Aggregate Functions in SQL? (COUNT, SUM, AVG, MAX, MIN)
