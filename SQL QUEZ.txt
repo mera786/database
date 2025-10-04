@@ -11,6 +11,9 @@
           Q9. What is NULL value in SQL?
           Q10. What is the difference between CHAR and VARCHAR?
           Q11. Difference between DELETE, TRUNCATE, and DROP?
+          Q12. WHAT IS SQL INJECTION?
+          Q13. Difference between DDL vs DML?
+          Q14. Explain SQL vs PL/SQL?
 (2) Constraints in SQL :
 ---------------------------
           Q1. Difference between Primary Key vs Unique Key?
@@ -41,6 +44,7 @@
           Q8. Difference between Correlated vs Non-Correlated subquery?
           Q9. How to select first 5 records from a table?
           Q10. Difference between EXISTS and IN?
+          Q11. Explain general order of SQL clauses in a SELECT query?
 (5) Indexes & Keys :
 ---------------------
           Q1. What is an Index in SQL?
@@ -64,6 +68,7 @@
           Q8. What is a Trigger?
           Q9. Difference between Trigger and Stored Procedure?
           Q10. What are Cursors in SQL?
+          Q11. Difference between Stored Procedure and View?
 (7) Transactions & Locks :
 ---------------------------
           Q1. What is a Transaction in SQL?
@@ -78,35 +83,30 @@
 ------------------------------
           Q1. What are Aggregate Functions in SQL? (COUNT, SUM, AVG, MAX, MIN)
           Q2. What are Scalar Functions in SQL?
-          Q3. Difference between NVL, ISNULL, COALESCE?
-          Q4. What are String Functions in SQL? (UPPER, LOWER, SUBSTR, CONCAT, etc.)
-          Q5. What are Date Functions in SQL? (NOW, CURDATE, DATEADD, DATEDIFF, etc.)
-          Q6. Difference between ROUND(), CEIL(), FLOOR()?
-          Q7. What is CASE WHEN in SQL?
-          Q8. What are Window Functions in SQL?
-          Q9. Difference between ROW_NUMBER(), RANK(), and DENSE_RANK()?
-          Q10. What is the difference between COUNT(*) vs COUNT(column_name)?
+          Q3. What are String Functions in SQL? (UPPER, LOWER, SUBSTR, CONCAT, etc.)
+          Q4. What are Date Functions in SQL? (NOW, CURDATE, DATEADD, DATEDIFF, etc.)
+          Q5. Difference between ROUND(), CEIL(), FLOOR()?
+          Q6. What is CASE WHEN in SQL?
+          Q7. What is the difference between COUNT(*) vs COUNT(column_name)?
+          Q8. What are SQL operators? Describe their types ?
+          Q9. EXPLAIN AND , OR, BETWEEN, IN, NOT Operators ?
+          Q10. How do you calculate total salary after a 10% bonus?
+          Q11. How do you find employees with salary greater than 50000?
+          Q12. How to find employees whose salary is not 50000?
+          Q13. How to find employees in IT department and salary > 50000?
+          Q14. How to find employees in IT or HR?
+          Q15. How to find employees whose name starts with ‘J’?
+          Q16. How to find employees in IT or HR using a shortcut?
+          Q17. Get all employees except those from IT and HR ?
+          Q18. How to find employees with salary between 40000 and 60000?
+          Q19. How to find employees whose Incentive is NULL?
+          Q20. How to find employees whose Incentive is NOT NULL?
 (9) Normalization & Design :
 ------------------------------
           Q1. What is Normalization?
           Q2. What are different Normal Forms (1NF, 2NF, 3NF, BCNF)?
           Q3. What is Denormalization?
-          Q4. Difference between Normalization vs Denormalization?
-          Q5. What is E-R Diagram?
-          Q6. What are Cardinalities in ER model?
-          Q7. What is Surrogate Key?
-          Q8. What is Composite Key?
-          Q9. What is Referential Integrity?
-          Q10. What is Data Redundancy?
-(10) Advanced / Performance :
--------------------------------
-          Q1. How do you optimize SQL queries?
-          Q2. Why should we avoid SELECT * ?
-          Q3. What is an Execution Plan?
-          Q4. Difference between OLTP vs OLAP?
-          Q5. What is Partitioning in MySQL?
-          Q6. Difference between Horizontal vs Vertical Partitioning?
-          Q7. What is Sharding in databases?
-          Q8. How does indexing help in performance tuning?
-          Q9. What is a Covering Index?
-          Q10. How do you find slow queries in MySQL?
+          Q4. What is E-R Diagram?
+          Q5. What are Cardinalities in ER model?
+          Q6. What is Data Redundancy?
+
