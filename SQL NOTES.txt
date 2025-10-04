@@ -314,6 +314,289 @@ Non-Clustered Index :
 Note:- 👉 By default, the Primary Key creates a Clustered Index (if no clustered index exists already).
 
 
+Q3. Can we create multiple clustered indexes in a table?
+👉 No, we cannot create multiple clustered indexes in a table. Reason: A clustered index defines the physical order of rows in the table.
+Since the data can only be physically sorted in one order, only one clustered index is allowed per table.
+
+Q4. What are composite indexes?
+👉 A Composite Index is an index created on two or more columns together in a table. It’s useful when queries often search using multiple columns in the WHERE clause.
+It improves performance for those multi-column searches.
+Example: 
+CREATE INDEX idx_emp_name_dept ON Employees(Name, Department);
+Now, if you run a query like: SELECT * FROM Employees WHERE Name = 'John' AND Department = 'HR';
+
+ Q5. When should you avoid indexes?
+👉 While indexes speed up reads (SELECT), they can slow down writes (INSERT, UPDATE, DELETE) and consume extra memory.
+So, you should avoid indexes in these situations:
+   - Small Tables
+   - Columns with High Number of Duplicate Values (Low Selectivity) Example: A Gender column (Male/Female), or Status column (Active/Inactive).
+
+Q6. What is the difference between Primary Key and Index?
+Primary Key :
+     - A constraint (rule) that uniquely identifies each row in a table.
+     - Automatically creates a unique clustered index (by default, in most databases like SQL Server/MySQL InnoDB).
+     - A table can have only one primary key.
+     - Ensures no duplicates and no NULL values.
+Index :
+     - A performance optimization feature that helps the database find data faster.
+     - Can be clustered or non-clustered.
+     - You can create multiple indexes on a table.
+     - Index does not enforce uniqueness unless it’s a unique index.
+
+Q7. What is covering index?
+👉 A Covering Index is an index that contains all the columns a query needs — so the database can answer the query just by looking at the index, without touching the actual table.
+Example : 
+Suppose you have a table: Employees(EmpID, Name, Department, Salary)
+Now, create an index on (Department, Salary): CREATE INDEX idx_dept_salary ON Employees(Department, Salary);
+If you run this query: SELECT Department, Salary FROM Employees WHERE Department = 'HR';
+
+Q8. What is a unique index?
+👉 A Unique Index ensures that the values in the indexed column(s) are unique — no duplicate values are allowed.
+     - Similar to a Unique Key constraint.
+     - Automatically created when you define a PRIMARY KEY or UNIQUE constraint on a column.
+     - You can also create it manually 
+Example: 
+-- Create a unique index on email column
+CREATE UNIQUE INDEX idx_unique_email ON Employees(Email);
+-- Now if you try to insert a duplicate email:
+INSERT INTO Employees (EmpID, Name, Email) VALUES (101, 'John', 'john@example.com');
+
+Q9. How do you drop an index in SQL?
+👉 You use the DROP INDEX statement example : DROP INDEX idx_name ON Employees;
+
+
+
+
+(6) Views & Stored Procedures :
+--------------------------------
+
+Q1. What is a View in SQL?
+👉 A View in SQL is like a virtual table.
+     - It does not store data itself.
+     - Instead, it is based on a SELECT query that pulls data from one or more tables.
+     - You can treat it like a normal table when querying.
+Example :
+Suppose you have a table Employees:
+EmpID | Name   | Department | Salary
+-----------------------------------
+1     | John   | HR         | 40000
+2     | Alice  | IT         | 50000
+3     | Bob    | HR         | 45000
+Now, create a view to show only HR employees:
+CREATE VIEW HR_Employees AS SELECT Name, Salary FROM Employees WHERE Department = 'HR';
+Now you can query it like a table:  
+                             SELECT * FROM HR_Employees;
+Output:
+Name  | Salary
+---------------
+John  | 40000
+Bob   | 45000
+
+Q2. What are the advantages of using views?
+👉 A View gives several benefits in SQL:
+     - Simplifies Complex Queries : Instead of writing a long JOIN or WHERE condition every time, you can just query the view. 
+     - Security (Data Hiding) : You can restrict access to certain columns or rows by creating a view. eg- Create a view without the Salary column so users cannot see                                    sensitive data.
+     - Reusability : Once created, a view can be reused in multiple queries like a normal table.
+     - Data Abstraction : Users don’t need to know the actual table structure. eg - They just query the view and get results.
+
+Q3. Difference between View and Table?
+| Feature         | Table                                    | View                                                 |
+| --------------- | ---------------------------------------- | ---------------------------------------------------- |
+| **Storage**     | Stores data physically on disk           | Does not store data; stores only the query           |
+| **Data Access** | Can directly insert, update, delete rows | Mostly read-only (some views are updatable)          |
+| **Creation**    | Created with `CREATE TABLE`              | Created with `CREATE VIEW`                           |
+| **Purpose**     | Main storage for data                    | Simplify queries, hide data, provide abstraction     |
+| **Dependency**  | Independent                              | Depends on base table(s)                             |
+
+ Q4. Can we insert/update data using a View?
+Yes, but only if the view is updatable. Not all views allow data modifications.
+
+
+Q5. What is a Stored Procedure?
+👉 A Stored Procedure is a pre-written SQL code saved in the database.
+      - You can execute it whenever needed instead of writing the same SQL queries again.
+      - Helps to perform repetitive tasks, improve performance.
+Ex- 
+-- Create a stored procedure to get employees of a department
+CREATE PROCEDURE GetEmployeesByDept(IN dept_name VARCHAR(50))
+BEGIN
+    SELECT EmpID, Name, Salary
+    FROM Employees
+    WHERE Department = dept_name;
+END;
+Now Call the procedure: CALL GetEmployeesByDept('HR');
+Note:- This will return all employees in the HR department.
+
+Q6. What are the benefits of stored procedures?
+Stored Procedures offer several advantages in SQL:
+    - Reusability : Write the code once and use it multiple times in different applications or queries.
+    - Improved Performance : Stored procedures are precompiled and stored in the database, so they run faster than ad-hoc queries.
+    - Security : You can restrict direct access to the tables and allow users to perform operations only through the procedure.
+    - Maintainability : Easy to update business logic in one place without changing the application code.
+
+Q7. Difference between Function and Stored Procedure?
+Function:
+    - Returns a single value.
+    - Can be used inside queries like SELECT.
+    - Usually does not change data in the table.
+    - Example: A function that calculates bonus for a salary.
+Stored Procedure:
+    - Performs a task or series of actions.
+    - Can return multiple results or output parameters.
+    - Can insert, update, or delete data.
+    - Example: A procedure that gives a raise to an employee.
+
+
+Q8. What is a Trigger?
+👉 A Trigger is a special kind of stored procedure that automatically runs when certain events happen in a table.
+    - You don’t call it manually.
+    - It reacts to INSERT, UPDATE, or DELETE operations.
+Example : Suppose you have a table Employees and you want to log every salary change in another table SalaryLog.
+CREATE TRIGGER trg_salary_update
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO SalaryLog(EmpID, OldSalary, NewSalary, ChangeDate)
+    VALUES (OLD.EmpID, OLD.Salary, NEW.Salary, NOW());
+END;
+Note:- Whenever an employee’s salary is updated, this trigger automatically records the change in SalaryLog.
+
+
+Q9. Difference between Trigger and Stored Procedure?
+Trigger:
+     - Runs automatically when an event happens (INSERT, UPDATE, DELETE) on a table.
+     - Cannot be called manually.
+     - Usually used for enforcing rules, auditing, or logging changes.
+     - Example: Automatically log salary changes in another table when salary is updated.
+Stored Procedure:
+     - Must be called manually using CALL or EXEC.
+     - Performs tasks like inserting, updating, or retrieving data.
+     - Can be used anytime, not tied to a table event.
+     - Example: Give a raise to an employee by calling the procedure.
+
+Q10. What are Cursors in SQL?
+👉 A Cursor is a database object that allows you to go through rows in a table one by one.
+     - Normally, SQL works with sets of rows.
+     - A cursor lets you process each row individually.
+Example : Suppose you have a table Employees and you want to print each employee’s name one by one:
+-- Declare cursor : DECLARE emp_cursor CURSOR FOR SELECT Name FROM Employees;
+-- Open cursor : OPEN emp_cursor;
+-- here process 
+-- Close cursor : CLOSE emp_cursor;
+
+
+
+
+
+(7) Transactions & Locks :
+---------------------------
+
+Q1. What is a Transaction in SQL?
+👉 A Transaction is a group of SQL statements that are executed together as a single unit of work.
+    - Either all statements succeed, or none of them are applied.
+    - Helps maintain data integrity.
+
+Q2. What are ACID properties?
+ACID properties are rules that ensure database transactions are safe and reliable.
+      - Atomicity (All or Nothing) :
+                    - A transaction must be fully completed or fully undone.
+                    - Example: Transferring $100 from Alice to Bob → if one update fails, the whole transaction is rolled back.
+      - Consistency (Data Validity) :
+                    - Database must remain in a valid state before and after a transaction.
+                    - Example: Total money in all accounts remains the same after a transfer.
+      - Isolation (No Interference) :
+                    - Transactions do not affect each other while running at the same time.
+                    - Example: Two people transferring money simultaneously won’t mess up balances.
+      - Durability (Permanent Changes) :
+                    - Once a transaction is committed, its changes are permanent, even if the system crashes.
+
+
+Q3. What are transaction control statements?
+Transaction Control Statements are special SQL commands that help manage changes made by commands like INSERT, UPDATE, DELETE.
+   - They let you group multiple operations into one transaction.
+   - You can then decide to save all changes or undo them if something goes wrong.
+   - Key Transaction Control Statements :
+                      - BEGIN TRANSACTION
+                      - COMMIT
+                      - ROLLBACK
+eg- 
+BEGIN TRANSACTION;
+-- Deduct $100 from account 1
+UPDATE accounts 
+SET balance = balance - 100 
+WHERE account_id = 1;
+-- Add $100 to account 2
+UPDATE accounts 
+SET balance = balance + 100 
+WHERE account_id = 2;
+COMMIT;  -- Save the changes permanently
+
+
+Q4. Difference between COMMIT and ROLLBACK?
+COMMIT :
+    - Makes all changes in a transaction permanent in the database.
+    - Example: After transferring money from Alice to Bob, if everything is correct, COMMIT saves the changes.
+ROLLBACK :
+    - Cancels all changes in a transaction and restores the database to its previous state.
+    - Example: If something goes wrong during the transfer, ROLLBACK undoes all updates.
+
+Q5. What is SAVEPOINT in SQL?
+👉 A SAVEPOINT is like a bookmark inside a transaction.
+            - It lets you partially undo changes instead of rolling back the whole transaction.
+            - You can roll back to a specific savepoint without affecting previous changes.
+eg - 
+BEGIN TRANSACTION;
+UPDATE accounts 
+SET balance = balance - 100 
+WHERE account_id = 1;
+SAVEPOINT sp1;  -- Create a savepoint here
+UPDATE accounts 
+SET balance = balance + 100 
+WHERE account_id = 2;
+-- Something goes wrong, undo only the second update
+ROLLBACK TO SAVEPOINT sp1;
+COMMIT;  -- Save changes from the first update permanently
+
+Q6. What is a Deadlock in SQL?
+👉 A Deadlock happens when two or more transactions are waiting for each other to release resources (like a table or row), and none of them can proceed.
+It’s like a traffic jam where cars block each other.
+How to Prevent Deadlocks in SQL :
+          - Access Tables in the Same Order : If one transaction updates Table A then Table B, all others should do the same.
+          - Keep Transactions Short : Avoid long transactions.
+
+
+Q7. Difference between Pessimistic vs Optimistic Locking?
+Pessimistic Locking :
+     - Assumes conflicts will happen.
+     - Locks the data immediately when a transaction reads it, so others cannot modify it until the transaction is done.
+     - Used in high-conflict situations.
+Example:
+Transaction 1 locks a row in a table to update it.
+Transaction 2 must wait until Transaction 1 finishes.
+Beginner analogy: Like putting a “Do Not Disturb” sign on a room while you’re inside.
+Optimistic Locking :
+     - Assumes conflicts are rare.
+     - Does not lock data when reading.
+     - Before updating, it checks if someone else changed it. If yes, the transaction is rolled back or retried.
+Example:
+Transaction 1 reads a row.
+Transaction 2 reads the same row.
+When Transaction 1 tries to update, the system checks if Transaction 2 changed it. If yes → retry or cancel.
+Beginner analogy:
+        Like taking a book from the shelf without a lock, but checking the book’s last page to see if someone else wrote in it before you update.
+
+
+Q8. How do you handle transactions in MySQL?
+In MySQL, a transaction is a set of SQL statements that are executed together. You can start, commit, or rollback a transaction using special commands.
+
+
+
+
+
+(8) Functions & Operators :
+------------------------------
+
+Q1. What are Aggregate Functions in SQL? (COUNT, SUM, AVG, MAX, MIN)
 
 
 
@@ -337,31 +620,6 @@ Note:- 👉 By default, the Primary Key creates a Clustered Index (if no cluster
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-(5) What is View ?
-A View is a virtual Table based on the result-set of an SQL statement .
-it doesn't store data any where rather , a view always shows up-to-date data. and the database engine recreate the view every time a user queries it.
-
-(6) What are Sub Queries ?
-a sub query or inner query or a nested query is a query within another SQL Query. it involves 2 select statements.
-
-(7) what is Union ?
-it is used to combine the result-set of two or more SELECT statements.
-it gives Unique Records.
-to use it: -> every SELECT should have same no.of columns.
-           -> columns must have similar data types.
-           -> columns in every SELECT should be in same order. 
 
 
 
@@ -401,39 +659,7 @@ NOT:=
 to negate the given condition.
 
 
-(13) What is a clause in SQL and why is it used , Tell names of Cluse?
-A clause in SQL is a part of a SQL statement that defines specific conditions or behavior to retrieve, filter, group, or sort data from a database.
 
-(14) Explain Where Cluse?
-to define some condition.
-
-(15) Explain having cluse?
-similar to where cluse. it applies some condition on rows.
-it is used when we want to apply any condition after grouping.
-eg. count no.of students in each city where max marks across 90.
-
-(16) Explain Group By Cluse?
-group rows that have the same value into summary rows.
-it collects data from multiple records and group the result by one or more column.
-generally we use group by with some aggregation function.
-eg. count number of student in each city.
-
-(17) Explain Order By Cluse?
-to sort in ascending or descending order. 
-
-(18) Explain Limit Cluse ?
-Sets an Upper Limit on a number of rows to be returned.
-
-
-
-
-
-
-
-
-(22) What are the different data types supported in SQL?
-
-refer sharda notes.
 
 (23) WHAT IS NORMALIZATION?
 -> Normalization is a database design technique that organize tables in manner that reduce redundancy and dependency of data.
@@ -450,41 +676,10 @@ Most Commonly Used Normal Forms (7) :
 (f) 5NF (Fifth Normal Form).
 (g) 6NF (Sixth Normal Form).
 
-(25) What are transaction control statements?
-Transaction Control Statements in SQL are special commands used to manage changes made by DML (Data Manipulation Language) statements like INSERT, UPDATE, and DELETE. 
-They help in grouping multiple operations into a single unit (called a transaction) and controlling whether the changes should be saved permanently or undone.
 
-** Key Transaction Control Statements **: 
--> BEGIN TRANSACTION: Marks the start of a transaction.
--> COMMIT: Saves all changes made by the transaction to the database. It is used to finalize the transaction.
--> ROLLBACK: Reverts all changes made by the transaction if an error occurs, restoring the database to its previous state.
 
-Example:
-BEGIN TRANSACTION;
-UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
-UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
-COMMIT;
 
-(26) What is ACID Properties ?
-ACID properties are fundamental to how transactions ensure reliability, integrity, and consistency in database operations.
-By following the ACID properties, a database system ensures that transactions are processed correctly and completely, even in the event of failures or crashes.
 
-(27) Explain Each ACID Properties & How do BEGIN, COMMIT, and ROLLBACK help a database work with ACID properties?
-
-| **ACID Rule**   | **What it Means**                              | **Which Command Helps**         |
-| --------------- | ---------------------------------------------- | ------------------------------- |
-| **Atomicity**   | Do everything or do nothing                    | `ROLLBACK` cancels all if error |
-| **Consistency** | Keep data correct and follow rules             | `COMMIT` only if all OK         |
-| **Isolation**   | Transactions don’t affect each other           | Handled by database engine      |
-| **Durability**  | Once saved, data stays safe even after a crash | `COMMIT` saves changes forever  |
-
-(28) DIFFERENCE BETWEEN DROP, DELETE AND TRUNCATE?
-
-| Feature                          | `DROP`                             | `DELETE`                           | `TRUNCATE`                                   |
-| -------------------------------- | ---------------------------------- | ---------------------------------- | -------------------------------------------- |
-| **Purpose**                      | Removes the entire table structure | Removes specific rows from a table | Removes all rows from a table                |
-| **Removes Data**                 | ✅ Yes                              | ✅ Yes (as per condition)          | ✅ Yes (all rows)                            |
-| **Removes Table Structure**      | ✅ Yes                              | ❌ No                              | ❌ No                                        |
 
 (29) DIFFERENCE BETWEEN DDL VS DML?
 
@@ -513,9 +708,6 @@ SQL Injection is a type of hacking where an attacker puts harmful SQL code  dele
 -> Use prepared statements.
 -> Use frameworks or ORMs (like JPA, Hibernate).
 
-(32) What is Stored Procedure?
-a stored procedure is a group of T-SQL Statements. if you have a situation, where you write the same query over & over again,
-you can save that specific query as a stored procedure and call it just by it's name.
 
 (33) Difference between Stored Procedure and View?
 
