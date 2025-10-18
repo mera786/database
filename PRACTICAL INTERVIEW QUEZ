@@ -1,25 +1,25 @@
 
 ORDER TO PRACTICE BELOW QUESTION SECTION WISE ?
 
-1️⃣ Section 1 – Basics of SQL
+1️⃣ Section 1 – Basics of SQL     ( start line no.32 to 271 )
 (SELECT, FROM, WHERE, Tables, Rows, Columns)
 
-2️⃣ Section 2 – Filtering & Sorting
+2️⃣ Section 2 – Filtering & Sorting        ( start line no.280 to 520 )
 (WHERE with operators, LIKE, ORDER BY, LIMIT/TOP)
 
-3️⃣ Section 3 – Functions & Expressions
+3️⃣ Section 3 – Functions & Expressions         ( start line no.528 to 681)
 (COUNT, SUM, AVG, MAX, MIN, GROUP BY, HAVING, DISTINCT, AS)
 
-4️⃣ Section 7 – Data Manipulation
+4️⃣ Section 4 – Data Manipulation        ( start line no.685 to 852 )
 (INSERT, UPDATE, DELETE, Transactions)
 
-5️⃣ Section 6 – Table Management
+5️⃣ Section 5 – Table Management         ( start line no.860 to 1018 )
 (CREATE, ALTER, DROP, Constraints, Default values)
 
-6️⃣ Section 4 – Joins
+6️⃣ Section 6 – Joins            ( start line no.1031 to 1221 )
 (INNER, LEFT, RIGHT, FULL, SELF, CROSS)
 
-7️⃣ Section 5 – Subqueries & Nested Queries
+7️⃣ Section 7 – Subqueries & Nested Queries            ( start line no.1233 to 1388)
 (In SELECT, WHERE, FROM, Correlated, EXISTS/NOT EXISTS)
 
 
@@ -143,8 +143,8 @@ Note:-
 
 (6) Show the oldest joining date in the company.
 Note:-
--> order by + asc + limit
--> use min() aggregate function
+Approach: 1 -> order by + asc + limit
+Approach: 2-> use min() aggregate function
 
 (7) Retrieve the most recently joined employee.
 Note:-
@@ -153,7 +153,7 @@ Note:-
 (8) Show all employees except the one with EmpID 5.
 Note:-
 -> use 'not in' operator
--> use <> = not equal operator
+-> use <>  not equal operator
 
 (9) Display full name (FirstName LastName) of all employees.
 Note:-
@@ -173,7 +173,7 @@ Note:-
 Note:-
 -> use 'distinct' keyword/cluse modifier
 
-(14) Show all employees ordered by JoinDate ascending.
+(14) Show all employees ordered by JoinDate in ascending.
 
 (15) Retrieve the first 3 employees in the Finance department by join date.
 Note:-
@@ -241,21 +241,24 @@ Note:-
 
 (9) Show the employee(s) with the longest name in the company.
 Note:-
--> length() + concat()+ max()
+-> concat()+ order by + length(concat(fName,'',lName)) + desc + limit 
 
 (10) Retrieve employees whose FirstName and LastName start with the same letter. ?
 Note:-
--> use substring() Scalar Function.
+Approach: 1 -> left(firstName,1) = left(lastName,1)
+Approach: 2-> use substring() Scalar Function.
 
 (11) Show employees in departments with more than 2 members. ?
 Note:-
--> use GROUP BY + HAVING.
+-> use GROUP BY + HAVING + count()
 
-Display employees who joined on a Monday.
+(12) Display employees who joined on a Monday. ?
+-> DAYNAME(JoinDate)
 
-Retrieve employees hired in the same month as Olivia White.
+(13) Retrieve employees hired in the same month as Olivia White ?
+-> month(joinDate) + concat()
 
-Display salaries with their rank (highest to lowest).
+(15) Display salaries with their rank (highest to lowest). ?
 
 Show employees earning above the company’s median salary.
 
@@ -266,6 +269,11 @@ Display all employees with salary rounded to the nearest thousand.
 Retrieve the department(s) with the highest average salary.
 
 Display the employee with the earliest joining date in each department.
+
+
+
+
+
 
 
 
@@ -357,21 +365,17 @@ Note:-
 Note:-
 -> use 'in' operator
 
-(14) List all customers ordered by Age ascending.
+(14) Get first top 5 customers sorted by CustomerID.
 
-(15) Show customers ordered by LastName descending.
-
-(16) Get first 5 customers sorted by CustomerID.
-
-(17) Show the youngest customer.
+(15) Show the youngest customer.
 Note:-
 -> order by + asc + limit 1
 
-(18) Find the oldest customer.
+(16) Find the oldest customer.
 
-(19) Show all customers from 'Germany' sorted by FirstName.
+(17) Show all customers from 'Germany' sorted by FirstName.
 
-(20) Get orders sorted by Amount descending.
+(18) Get orders sorted by Amount descending.                                      TILL HERE EASY COMPLETED.
 
 
 
@@ -517,7 +521,16 @@ Find orders where amount is greater than the customer’s age multiplied by 20.
 
 
 
-Section 3: Functions & Expressions :
+
+
+
+                                    
+ 
+                                                          3️⃣ Section 3 – Functions & Expressions
+                                                          (COUNT, SUM, AVG, MAX, MIN, GROUP BY, HAVING, DISTINCT, AS)
+                                                          ------------------------------------------------------------
+
+
 
 📌 Sample Schema & Data for Section 3 :
 
@@ -669,7 +682,356 @@ Show the top 3 departments in terms of total salary expense.
 
 
 
-Section 4: JOINS (Very Important)  :
+
+                                                                       4️⃣ Section 4 – Data Manipulation
+                                                                       (INSERT, UPDATE, DELETE, Transactions)
+                                                                  ------------------------------------------------
+
+Schema & Sample Data :
+
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50),
+    location VARCHAR(50)
+);
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    age INT,
+    salary DECIMAL(10,2),
+    dept_id INT,
+    hire_date DATE,
+    CONSTRAINT fk_dept FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+INSERT INTO Departments VALUES
+(1, 'HR', 'New York'),
+(2, 'Finance', 'Chicago'),
+(3, 'IT', 'San Francisco'),
+(4, 'Marketing', 'Boston');
+
+INSERT INTO Employees VALUES
+(101, 'John Doe', 28, 50000, 1, '2020-01-15'),
+(102, 'Jane Smith', 35, 65000, 2, '2018-03-12'),
+(103, 'Emily Davis', 30, 72000, 3, '2019-07-01'),
+(104, 'Michael Brown', 40, 80000, 3, '2015-06-23'),
+(105, 'William Johnson', 25, 40000, 4, '2021-09-10'),
+(106, 'Sophia Lee', 29, 55000, 2, '2020-11-18'),
+(107, 'James Wilson', 38, 90000, 1, '2016-04-14'),
+(108, 'Olivia Taylor', 31, 67000, 4, '2017-08-29');
+
+
+1. Easy Level (20 Questions)
+Focus: INSERT, UPDATE, DELETE basics.
+
+Insert a new employee into the Employees table.
+
+Insert a new department into Departments table.
+
+Insert an employee without specifying all columns (use default values).
+
+Insert multiple employees in a single INSERT statement.
+
+Increase salary of employee with emp_id = 101 by 5000.
+
+Update the location of dept_id = 3 to Seattle.
+
+Change the dept_id of employee William Johnson to 2.
+
+Delete the employee with emp_id = 106.
+
+Delete all employees in department Marketing.
+
+Set the salary of all employees in department HR to 60000.
+
+Update the hire_date of Jane Smith to 2019-01-01.
+
+Insert an employee hired today using CURRENT_DATE.
+
+Delete all employees with salary less than 45000.
+
+Update department name from Finance to Accounts.
+
+Insert a new employee with no dept_id assigned.
+
+Change age of Michael Brown to 41.
+
+Delete a department with no employees.
+
+Insert a new department Research in Austin.
+
+Increase all salaries by 10%.
+
+Delete all employees hired before 2017.
+
+2. Medium Level (20 Questions)
+Focus: Conditional updates, subqueries, transactions.
+
+Increase salary by 5% for employees hired after 2019.
+
+Update department for all employees earning more than 70000 to Finance.
+
+Delete employees whose age is between 30 and 35.
+
+Insert a new employee and assign them to the same department as Olivia Taylor.
+
+Update salary to match the average salary of their department for employees with below-average pay.
+
+Delete all employees who are not assigned to any department.
+
+Transfer all IT department employees to Marketing.
+
+Give a 2000 bonus to employees in the department with the highest average salary.
+
+Delete employees earning less than the company’s average salary.
+
+Update the hire date of employees with the lowest salary to today’s date.
+
+Insert employees using data from another table.
+
+Delete employees whose department is located in Boston.
+
+Update salaries so that the highest-paid employee earns 100000.
+
+Increase salary by 15% for employees in the department with the fewest employees.
+
+Delete the most recently hired employee.
+
+Insert an employee into the department with the same location as Finance.
+
+Update age for employees whose name starts with J to 29.
+
+Delete employees who joined more than 8 years ago.
+
+Give every employee in HR the maximum salary in the company.
+
+Delete all employees in departments that have more than 2 employees.
+
+3. Low-Level Hard (20 Questions)
+Focus: Complex conditions, joins in updates/deletes, transactional control.
+
+Increase salary of employees whose department is in the same city as the highest-paid employee’s department.
+
+Delete employees whose salary is less than the minimum salary in the IT department.
+
+Update salaries so each employee earns the median salary of the company.
+
+Transfer employees from the smallest department to the largest department.
+
+Delete employees whose department’s average salary is less than 50000.
+
+Insert employees by copying all employees from Marketing into Research with a 5% salary hike.
+
+Update salaries so that employees with the same age have the same salary as the highest-paid among them.
+
+Delete all employees except the top 2 highest paid from each department.
+
+Increase salary for employees who earn less than the salary of Jane Smith but more than William Johnson.
+
+Update salaries using a join with a temporary table of new salary values.
+
+Insert an employee in each department whose average age is less than 30.
+
+Delete employees who are the only member of their department.
+
+Update salaries for employees hired in the same year as Michael Brown to be 80000.
+
+Transfer all employees from departments located in cities starting with N to IT.
+
+Delete employees who earn exactly the department’s average salary.
+
+Update salaries for employees in the department with the oldest average hire date to be 90000.
+
+Insert employees from a CSV file into the Employees table.
+
+Delete employees where there’s another employee with the same salary and department.
+
+Update the department of employees earning within 5000 of the max salary to Executive.
+
+Give all employees in the top 50% salary bracket a 20% raise.
+
+
+
+
+
+
+
+                                                                       5️⃣ Section 5 – Table Management
+                                                                      (CREATE, ALTER, DROP, Constraints, Default values)
+                                                                      ---------------------------------------------------
+
+📂 Sample Schema for Practice :
+
+-- Department Table
+CREATE TABLE Department (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(50) UNIQUE NOT NULL,
+    Location VARCHAR(50) DEFAULT 'Head Office'
+);
+
+-- Employee Table
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(50) NOT NULL,
+    Age INT,
+    Salary DECIMAL(10, 2),
+    DeptID INT,
+    CONSTRAINT fk_department FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
+);
+
+
+INSERT INTO Department VALUES 
+(1, 'HR', 'New York'),
+(2, 'IT', 'Chicago'),
+(3, 'Finance', DEFAULT);
+
+INSERT INTO Employee VALUES
+(101, 'John Doe', 30, 50000, 1),
+(102, 'Jane Smith', 25, 60000, 2),
+(103, 'Michael Brown', 40, 80000, 3);
+
+
+
+
+🟢 20 Easy Questions
+Create a table called Products with columns ProductID, ProductName, and Price.
+
+Add a NOT NULL constraint to the ProductName column.
+
+Create a table Customers with a PRIMARY KEY on CustomerID.
+
+Drop the Products table.
+
+Add a new column Email to the Employee table.
+
+Change the data type of the Salary column in Employee to FLOAT.
+
+Drop the column Email from the Employee table.
+
+Create a table Orders with OrderID as primary key and OrderDate as DATE.
+
+Set a default value for the Location column in Department to 'Remote'.
+
+Add a UNIQUE constraint to the EmpName column in Employee.
+
+Drop the UNIQUE constraint from EmpName in Employee.
+
+Create a table with a composite primary key (StudentID, CourseID).
+
+Drop the foreign key constraint from Employee.
+
+Rename the column EmpName to FullName in Employee.
+
+Create a table Suppliers with an auto-increment SupplierID.
+
+Drop the Department table.
+
+Create a TEMPORARY table TempData with some columns.
+
+Create a table that copies the structure of Employee without data.
+
+Create a table that copies the structure and data of Department.
+
+Drop all data from Employee without deleting the table.
+
+🟡 20 Medium Questions
+Create a table Projects with columns ProjectID, ProjectName, StartDate, EndDate, and DeptID (foreign key referencing Department).
+
+Alter Projects to add a NOT NULL constraint to ProjectName.
+
+Add a CHECK constraint to Employee to ensure Salary > 0.
+
+Remove the CHECK constraint from Employee.
+
+Add a DEFAULT value of 25 for Age in Employee.
+
+Drop the DEFAULT value from Age in Employee.
+
+Change the column name DeptName to DepartmentName in Department.
+
+Change the data type of DeptName to VARCHAR(100).
+
+Drop the column Location from Department.
+
+Add a foreign key in Projects that references DeptID in Department with ON DELETE CASCADE.
+
+Drop the ON DELETE CASCADE constraint from Projects.
+
+Create a table Training with TrainingID as primary key and EmpID as foreign key referencing Employee.
+
+Add a composite key (DeptID, ProjectID) to Projects.
+
+Create a copy of Employee structure only if it doesn’t already exist.
+
+Drop the Projects table only if it exists.
+
+Create a table ArchivedEmployees that copies all employees with Salary > 60000.
+
+Create a VIEW to display all Employee names and their department names.
+
+Create a VIEW to display all employees from IT department only.
+
+Rename table Employee to Staff.
+
+Rename table Staff back to Employee.
+
+🔴 20 Low-Level Hard Questions
+Create a table Inventory with a ProductID primary key, Quantity (must be >= 0), and a foreign key referencing Products.
+
+Alter Inventory to change the Quantity default value to 10.
+
+Add a CHECK constraint on Age in Employee to ensure it’s between 18 and 60.
+
+Drop the CHECK constraint on Age.
+
+Create a table Branch with a self-referencing foreign key for ParentBranchID.
+
+Alter Employee to make DeptID NOT NULL.
+
+Create a BACKUP table for Department and Employee combined using a JOIN.
+
+Partition a table Sales by YEAR(SaleDate) (syntax depends on DB).
+
+Create a table AuditLog with a timestamp column defaulting to current time.
+
+Alter Projects to add a Status column with allowed values 'Active', 'Completed', 'Pending' using CHECK.
+
+Drop the CHECK constraint from Status.
+
+Create a table Course with composite key (CourseID, BatchID) and a foreign key on BatchID referencing Batches.
+
+Add an index on Salary in Employee.
+
+Drop the index from Salary in Employee.
+
+Create a table with ENUM type for gender (Male, Female, Other).
+
+Add a foreign key to Training with ON UPDATE CASCADE.
+
+Drop the foreign key with ON UPDATE CASCADE.
+
+Create a table DeletedEmployees that automatically stores deleted Employee rows using a trigger.
+
+Create a table Config that can store only one row of settings using a CHECK constraint.
+
+Merge Department and Projects tables into a new table DeptProjects with selected columns.
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                          6️⃣ Section 6 – Joins
+                                                                          (INNER, LEFT, RIGHT, FULL, SELF, CROSS)
+                                                                        ---------------------------------------------
+
 
 Schema for JOIN Practice :
 
@@ -860,7 +1222,18 @@ Show top 3 highest-paid employees in each department.
 
 
 
-Section 5: Subqueries & Nested Queries  :
+
+
+
+
+
+
+
+
+                                                                7️⃣ Section 7 – Subqueries & Nested Queries
+                                                                (In SELECT, WHERE, FROM, Correlated, EXISTS/NOT EXISTS)
+                                                                ---------------------------------------------------------
+
 
 Schema for Practice :
 
@@ -1016,399 +1389,10 @@ Get the second-highest spending customer for each country.
 
 
 
-Section 6: Table Management with 60 questions :
 
-📂 Sample Schema for Practice :
+               
 
--- Department Table
-CREATE TABLE Department (
-    DeptID INT PRIMARY KEY,
-    DeptName VARCHAR(50) UNIQUE NOT NULL,
-    Location VARCHAR(50) DEFAULT 'Head Office'
-);
+                                                                     
 
--- Employee Table
-CREATE TABLE Employee (
-    EmpID INT PRIMARY KEY,
-    EmpName VARCHAR(50) NOT NULL,
-    Age INT,
-    Salary DECIMAL(10, 2),
-    DeptID INT,
-    CONSTRAINT fk_department FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
-);
 
-
-INSERT INTO Department VALUES 
-(1, 'HR', 'New York'),
-(2, 'IT', 'Chicago'),
-(3, 'Finance', DEFAULT);
-
-INSERT INTO Employee VALUES
-(101, 'John Doe', 30, 50000, 1),
-(102, 'Jane Smith', 25, 60000, 2),
-(103, 'Michael Brown', 40, 80000, 3);
-
-
-
-
-🟢 20 Easy Questions
-Create a table called Products with columns ProductID, ProductName, and Price.
-
-Add a NOT NULL constraint to the ProductName column.
-
-Create a table Customers with a PRIMARY KEY on CustomerID.
-
-Drop the Products table.
-
-Add a new column Email to the Employee table.
-
-Change the data type of the Salary column in Employee to FLOAT.
-
-Drop the column Email from the Employee table.
-
-Create a table Orders with OrderID as primary key and OrderDate as DATE.
-
-Set a default value for the Location column in Department to 'Remote'.
-
-Add a UNIQUE constraint to the EmpName column in Employee.
-
-Drop the UNIQUE constraint from EmpName in Employee.
-
-Create a table with a composite primary key (StudentID, CourseID).
-
-Drop the foreign key constraint from Employee.
-
-Rename the column EmpName to FullName in Employee.
-
-Create a table Suppliers with an auto-increment SupplierID.
-
-Drop the Department table.
-
-Create a TEMPORARY table TempData with some columns.
-
-Create a table that copies the structure of Employee without data.
-
-Create a table that copies the structure and data of Department.
-
-Drop all data from Employee without deleting the table.
-
-🟡 20 Medium Questions
-Create a table Projects with columns ProjectID, ProjectName, StartDate, EndDate, and DeptID (foreign key referencing Department).
-
-Alter Projects to add a NOT NULL constraint to ProjectName.
-
-Add a CHECK constraint to Employee to ensure Salary > 0.
-
-Remove the CHECK constraint from Employee.
-
-Add a DEFAULT value of 25 for Age in Employee.
-
-Drop the DEFAULT value from Age in Employee.
-
-Change the column name DeptName to DepartmentName in Department.
-
-Change the data type of DeptName to VARCHAR(100).
-
-Drop the column Location from Department.
-
-Add a foreign key in Projects that references DeptID in Department with ON DELETE CASCADE.
-
-Drop the ON DELETE CASCADE constraint from Projects.
-
-Create a table Training with TrainingID as primary key and EmpID as foreign key referencing Employee.
-
-Add a composite key (DeptID, ProjectID) to Projects.
-
-Create a copy of Employee structure only if it doesn’t already exist.
-
-Drop the Projects table only if it exists.
-
-Create a table ArchivedEmployees that copies all employees with Salary > 60000.
-
-Create a VIEW to display all Employee names and their department names.
-
-Create a VIEW to display all employees from IT department only.
-
-Rename table Employee to Staff.
-
-Rename table Staff back to Employee.
-
-🔴 20 Low-Level Hard Questions
-Create a table Inventory with a ProductID primary key, Quantity (must be >= 0), and a foreign key referencing Products.
-
-Alter Inventory to change the Quantity default value to 10.
-
-Add a CHECK constraint on Age in Employee to ensure it’s between 18 and 60.
-
-Drop the CHECK constraint on Age.
-
-Create a table Branch with a self-referencing foreign key for ParentBranchID.
-
-Alter Employee to make DeptID NOT NULL.
-
-Create a BACKUP table for Department and Employee combined using a JOIN.
-
-Partition a table Sales by YEAR(SaleDate) (syntax depends on DB).
-
-Create a table AuditLog with a timestamp column defaulting to current time.
-
-Alter Projects to add a Status column with allowed values 'Active', 'Completed', 'Pending' using CHECK.
-
-Drop the CHECK constraint from Status.
-
-Create a table Course with composite key (CourseID, BatchID) and a foreign key on BatchID referencing Batches.
-
-Add an index on Salary in Employee.
-
-Drop the index from Salary in Employee.
-
-Create a table with ENUM type for gender (Male, Female, Other).
-
-Add a foreign key to Training with ON UPDATE CASCADE.
-
-Drop the foreign key with ON UPDATE CASCADE.
-
-Create a table DeletedEmployees that automatically stores deleted Employee rows using a trigger.
-
-Create a table Config that can store only one row of settings using a CHECK constraint.
-
-Merge Department and Projects tables into a new table DeptProjects with selected columns.
-
-
-Section 7 – Data Manipulation  :
-
-Schema & Sample Data :
-
-CREATE TABLE Departments (
-    dept_id INT PRIMARY KEY,
-    dept_name VARCHAR(50),
-    location VARCHAR(50)
-);
-
-CREATE TABLE Employees (
-    emp_id INT PRIMARY KEY,
-    emp_name VARCHAR(50),
-    age INT,
-    salary DECIMAL(10,2),
-    dept_id INT,
-    hire_date DATE,
-    CONSTRAINT fk_dept FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
-);
-
-INSERT INTO Departments VALUES
-(1, 'HR', 'New York'),
-(2, 'Finance', 'Chicago'),
-(3, 'IT', 'San Francisco'),
-(4, 'Marketing', 'Boston');
-
-INSERT INTO Employees VALUES
-(101, 'John Doe', 28, 50000, 1, '2020-01-15'),
-(102, 'Jane Smith', 35, 65000, 2, '2018-03-12'),
-(103, 'Emily Davis', 30, 72000, 3, '2019-07-01'),
-(104, 'Michael Brown', 40, 80000, 3, '2015-06-23'),
-(105, 'William Johnson', 25, 40000, 4, '2021-09-10'),
-(106, 'Sophia Lee', 29, 55000, 2, '2020-11-18'),
-(107, 'James Wilson', 38, 90000, 1, '2016-04-14'),
-(108, 'Olivia Taylor', 31, 67000, 4, '2017-08-29');
-
-
-1. Easy Level (20 Questions)
-Focus: INSERT, UPDATE, DELETE basics.
-
-Insert a new employee into the Employees table.
-
-Insert a new department into Departments table.
-
-Insert an employee without specifying all columns (use default values).
-
-Insert multiple employees in a single INSERT statement.
-
-Increase salary of employee with emp_id = 101 by 5000.
-
-Update the location of dept_id = 3 to Seattle.
-
-Change the dept_id of employee William Johnson to 2.
-
-Delete the employee with emp_id = 106.
-
-Delete all employees in department Marketing.
-
-Set the salary of all employees in department HR to 60000.
-
-Update the hire_date of Jane Smith to 2019-01-01.
-
-Insert an employee hired today using CURRENT_DATE.
-
-Delete all employees with salary less than 45000.
-
-Update department name from Finance to Accounts.
-
-Insert a new employee with no dept_id assigned.
-
-Change age of Michael Brown to 41.
-
-Delete a department with no employees.
-
-Insert a new department Research in Austin.
-
-Increase all salaries by 10%.
-
-Delete all employees hired before 2017.
-
-2. Medium Level (20 Questions)
-Focus: Conditional updates, subqueries, transactions.
-
-Increase salary by 5% for employees hired after 2019.
-
-Update department for all employees earning more than 70000 to Finance.
-
-Delete employees whose age is between 30 and 35.
-
-Insert a new employee and assign them to the same department as Olivia Taylor.
-
-Update salary to match the average salary of their department for employees with below-average pay.
-
-Delete all employees who are not assigned to any department.
-
-Transfer all IT department employees to Marketing.
-
-Give a 2000 bonus to employees in the department with the highest average salary.
-
-Delete employees earning less than the company’s average salary.
-
-Update the hire date of employees with the lowest salary to today’s date.
-
-Insert employees using data from another table.
-
-Delete employees whose department is located in Boston.
-
-Update salaries so that the highest-paid employee earns 100000.
-
-Increase salary by 15% for employees in the department with the fewest employees.
-
-Delete the most recently hired employee.
-
-Insert an employee into the department with the same location as Finance.
-
-Update age for employees whose name starts with J to 29.
-
-Delete employees who joined more than 8 years ago.
-
-Give every employee in HR the maximum salary in the company.
-
-Delete all employees in departments that have more than 2 employees.
-
-3. Low-Level Hard (20 Questions)
-Focus: Complex conditions, joins in updates/deletes, transactional control.
-
-Increase salary of employees whose department is in the same city as the highest-paid employee’s department.
-
-Delete employees whose salary is less than the minimum salary in the IT department.
-
-Update salaries so each employee earns the median salary of the company.
-
-Transfer employees from the smallest department to the largest department.
-
-Delete employees whose department’s average salary is less than 50000.
-
-Insert employees by copying all employees from Marketing into Research with a 5% salary hike.
-
-Update salaries so that employees with the same age have the same salary as the highest-paid among them.
-
-Delete all employees except the top 2 highest paid from each department.
-
-Increase salary for employees who earn less than the salary of Jane Smith but more than William Johnson.
-
-Update salaries using a join with a temporary table of new salary values.
-
-Insert an employee in each department whose average age is less than 30.
-
-Delete employees who are the only member of their department.
-
-Update salaries for employees hired in the same year as Michael Brown to be 80000.
-
-Transfer all employees from departments located in cities starting with N to IT.
-
-Delete employees who earn exactly the department’s average salary.
-
-Update salaries for employees in the department with the oldest average hire date to be 90000.
-
-Insert employees from a CSV file into the Employees table.
-
-Delete employees where there’s another employee with the same salary and department.
-
-Update the department of employees earning within 5000 of the max salary to Executive.
-
-Give all employees in the top 50% salary bracket a 20% raise.
-
-
-
-
-
-
-
-
-
-
-
-
-
-✅ 10 Easy Questions
-----------------------------
-(1). Fetch all columns from the employees table.
-(2). Get all employees with salary greater than 50,000.
-(3). Fetch employee names sorted by joining date.
-(4). Get the top 5 highest-paid employees.
-(5). How many employees are in the company?
-(6). Get department-wise employee count.
-(7). Find all employees whose names start with 'A'.
-(8). Fetch employees from departments 1, 3, and 5.
-(9). Get employees who joined between 2020 and 2022.
-(10) Find employees who don’t have a manager assigned.
-
-
-####################################################################################################
-🟡 10 Medium Questions
-------------------------------
-List employee names with their department names.
-
-List all employees and their managers' names.
-
-List departments with more than 5 employees.
-
-Find employees earning more than the average salary.
-
-Increase salary by 10% for employees in 'IT' department.
-
-Delete employees who haven't logged in for 2 years.
-
-Show employee name and label their salary level as 'High', 'Medium', or 'Low'.
-
-Get all distinct job titles from the employee table.
-
-Get a list of all employee and manager names in one column.
-
-Extract domain name from an email address.
-
-#####################################################################################
-🔴 10 Hard Questions
-----------------------------
-List all employees along with their manager name (hierarchical).
-
-Get the highest-paid employee from each department.
-
-Find employees who earn more than the average salary of their department.
-
-Assign row number to each employee by department based on salary (if MySQL 8+).
-
-Find the hierarchy of employees reporting to a specific manager (recursively).
-
-Show department-wise count of employees per job title.
-
-Find duplicate email addresses.
-
-Get users where the JSON field preferences->notifications is true.
-
-Get daily new user count for the past week.
-
-Explain how you prevent a deadlock in concurrent updates.
+                                                                      
