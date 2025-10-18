@@ -102,13 +102,13 @@ Note:
 Note:-
 -> use Between + AND
 
-(17) Retrieve the department of employee Olivia White.
+(17) Retrieve the department of employee whose FirstName is sOlivia and LastName is White.?
 Note:-
 -> use AND
 
 (18) Show only the first 5 rows from the Employees table.
 Note:-
--> use order by + limit
+-> use limit
 
 (19) Display all employees sorted by FirstName in ascending order.
 Note:-
