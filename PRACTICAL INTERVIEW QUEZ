@@ -259,8 +259,9 @@ Note:-
 -> month(joinDate) + concat()
 
 (15) Display salaries with their rank (highest to lowest). ?
+-> rank()+over(order by... desc)
 
-Show employees earning above the company’s median salary.
+(16) Show employees earning above the company’s median salary.
 
 Retrieve employees who joined exactly on the first day of any month.
 
@@ -1089,22 +1090,35 @@ INSERT INTO Salaries VALUES
 (5, 45000);
 
 
+60 Practice Questions  :
+##########################
 
-Section 4: JOINS — 60 Questions
-A. Easy Level (20 Questions)
-Basic understanding of INNER, LEFT, RIGHT, FULL joins.
+Easy (20 Qs)
+______________
+                                                 🔹 Basic Syntax  :
+                                                SELECT 
+                                                     table1.column_name,
+                                                     table2.column_name
+                                                 FROM 
+                                                     table1
+                                                 INNER JOIN 
+                                                     table2
+                                                 ON 
+                                                     table1.common_column = table2.common_column;
 
-List all employees with their department names using INNER JOIN.
 
-List all employees and their department names using LEFT JOIN (include employees without department).
 
-List all departments and employees using RIGHT JOIN (include departments without employees).
+(1) List all employees with their department names using INNER JOIN. ?
 
-Show all employees with their salary using INNER JOIN.
+(2) List all employees and their department names using LEFT JOIN (even if that employee does not belong to any department.t) ?
 
-Show all employees and their salary (include employees without salary) using LEFT JOIN.
+(3) List all departments and employees using RIGHT JOIN (even if that department does not belong to any employee.).
 
-List all department names and project names using INNER JOIN.
+(4) Show all employees with their salary using INNER JOIN.
+
+(5) Show all employees and their salary (include employees, but without salary) using LEFT JOIN.
+
+(6) List all department names and project names using INNER JOIN.
 
 List all departments and projects (include departments without projects) using LEFT JOIN.
 
