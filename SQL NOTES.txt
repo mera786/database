@@ -4,7 +4,7 @@
 Q1. What is SQL?
  - SQL stands for Structured Query Language.
  - It is like a language to talk with databases.
- - Just like we use English or Hindi to communicate with people, we use SQL to communicate with databases – to ask for data, add new data, change data, or         delete data.  
+ - Just like we use English or Hindi to communicate with people, we use SQL to communicate with databases – to ask for data, add new data, change data, or  delete data.  
 
 Q2. Difference between SQL and MySQL?
 SQL (Structured Query Language):
