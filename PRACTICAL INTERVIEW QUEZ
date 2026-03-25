@@ -102,7 +102,7 @@ Note:
 Note:-
 -> use Between + AND
 
-(17) Retrieve the department of employee whose FirstName is sOlivia and LastName is White.?
+(17) Retrieve the department of employee whose FirstName is Olivia and LastName is White.?
 Note:-
 -> use AND
 
@@ -329,7 +329,7 @@ INSERT INTO Orders (OrderID, CustomerID, OrderDate, Amount, Status) VALUES
 (110, 10, '2024-05-10', 1000.00, 'Completed');
 
 
-🟢 20 Easy Questions
+🟢 20 Easy Questions 
 _________________________
 
 (1) Get all customers from USA.
