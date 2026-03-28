@@ -469,7 +469,7 @@ Note:-
 -> use 'day()' function
 
 
-🔴 20 Low-Hard Questions                                                           TILL HERE MEDIUM COMPLETED.  
+🔴 20 Low-Hard Questions                                                           
 _____________________________
 
 (1) Get customers whose first name length is more than 5 characters.
@@ -486,13 +486,18 @@ Note:-
 
 (4) Get customers who have never placed an order.
 Note:-
--> use 'not in()'
+-> use 'not in()' subquery 
+-> ya use LEFT JOIN.
 
 (5) Find the top 3 oldest customers from 'USA'.
+-> where + order by + limit
 
-Show orders from customers living in 'Berlin' or 'Paris', amount greater than 500.
+(6) Show orders from customers living in 'Berlin' or 'Paris', amount greater than 500.
+-> use INNER JOIN.
+ Note:- JOIN likha = INNER JOIN samjho sirf inner join liye hee allowed hai shortcut baki left, right,full or others  k liye must write.
 
-Find customers whose last name starts with 'W' and age is between 25 and 40.
+(7) Find customers whose last name starts with 'W' and age is between 25 and 40.                                TILL HERE MEDIUM COMPLETED.  
+
 
 Get orders where amount is greater than all orders placed by customers from 'UK'.
 
