@@ -489,25 +489,25 @@ Note:-
 -> use 'not in()' subquery 
 -> ya use LEFT JOIN.
 
-(5) Find the top 3 oldest customers from 'USA'.
+(5) Find the top 3 oldest customers from 'USA'.?
 -> where + order by + limit
 
-(6) Show orders from customers living in 'Berlin' or 'Paris', amount greater than 500.
+(6) Show orders from customers living in 'Berlin' or 'Paris', amount greater than 500. ?
 -> use INNER JOIN.
- Note:- JOIN likha = INNER JOIN samjho sirf inner join liye hee allowed hai shortcut baki left, right,full or others  k liye must write.
+ Note:- JOIN likha = INNER JOIN, samjho sirf inner join liye hee allowed hai shortcut baki left, right,full or others  k liye must write.
 
-(7) Find customers whose last name starts with 'W' and age is between 25 and 40.                                TILL HERE MEDIUM COMPLETED.  
+(7) Find customers whose last name starts with 'W' and age is between 25 and 40.  ?                               TILL HERE MEDIUM COMPLETED.  
 
+(8) Get orders where amount is greater than all orders placed by customers from 'UK'. ?
+Note:- Is query me dono use ho rahe hain: JOIN, SUBQUERY.
 
-Get orders where amount is greater than all orders placed by customers from 'UK'.
+(9) Show customers who placed orders only in April 2024. ?
+Note:- Join + where + and
 
-Show customers who placed orders only in April 2024.
+(10) Get customers whose age is within 2 years of the youngest customer’s age. ?
+Note:- subquery ( min(age) +2) 
 
-Get customers whose age is within 2 years of the youngest customer’s age.
-
-Find orders that are among the top 30% highest amounts.
-
-Get customers from the country with the most orders.
+(11) Get customers from the country with the most orders. 
 
 Find customers whose first name contains 'a' exactly twice.
 
