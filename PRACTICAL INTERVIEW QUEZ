@@ -496,7 +496,7 @@ Note:-
 -> use INNER JOIN.
  Note:- JOIN likha = INNER JOIN, samjho sirf inner join liye hee allowed hai shortcut baki left, right,full or others  k liye must write.
 
-(7) Find customers whose last name starts with 'W' and age is between 25 and 40.  ?                               TILL HERE MEDIUM COMPLETED.  
+(7) Find customers whose last name starts with 'W' and age is between 25 and 40.  ?                               
 
 (8) Get orders where amount is greater than all orders placed by customers from 'UK'. ?
 Note:- Is query me dono use ho rahe hain: JOIN, SUBQUERY.
@@ -504,7 +504,7 @@ Note:- Is query me dono use ho rahe hain: JOIN, SUBQUERY.
 (9) Show customers who placed orders only in April 2024. ?
 Note:- Join + where + and
 
-(10) Get customers whose age is within 2 years of the youngest customer’s age. ?
+(10) Get customers whose age is within 2 years of the youngest customer’s age. ?                 TILL HERE MEDIUM COMPLETED.  
 Note:- subquery ( min(age) +2) 
 
 (11) Get customers from the country with the most orders. 
